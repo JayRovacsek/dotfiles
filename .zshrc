@@ -95,6 +95,8 @@ export WASMTIME_HOME="~/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 eval "$(starship init zsh)"
 
 # >>> conda initialize >>>
