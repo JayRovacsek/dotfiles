@@ -20,6 +20,14 @@ else
     export EDITOR='vim'
 fi
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+
 # Custom env:
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export UPDATE_ZSH_DAYS=3
@@ -34,10 +42,9 @@ alias pip='pip3'
 
 # Scripts
 alias monitor="~/dev/internal/scripts/progress.sh"
-alias count="~/dev/internal/scripts/count_files.sh"
+alias count="~/dev/internal/sh/scripts/count_files.sh"
 alias fix_rqp=". .~/dev/internal/scripts/fix_rqp.sh"
 alias unset_rqp=". ./~/dev/internal/scripts/unset_rqp.sh"
-alias count="~/dev/internal/scripts/count_files.sh"
 alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron"
 alias update="~/dev/internal/sh/scripts/update.sh"
 
@@ -90,6 +97,8 @@ export PATH="$PATH:~/dev/flutter/bin"
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 export WASMTIME_HOME="~/.wasmtime"
 

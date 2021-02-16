@@ -73,7 +73,8 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   # Normal (roman) font face
-  #normal:
+  normal:
+    family: Hack Nerd Font
     # Font family
     #
     # Default:
@@ -86,7 +87,8 @@ font:
     #style: Regular
 
   # Bold font face
-  #bold:
+  bold:
+    family: Hack Nerd Font
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
@@ -97,7 +99,8 @@ font:
     #style: Bold
 
   # Italic font face
-  #italic:
+  italic:
+    family: Hack Nerd Font
     # Font family
     #
     # If the italic family is not specified, it will fall back to the

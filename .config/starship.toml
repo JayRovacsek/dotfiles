@@ -5,23 +5,19 @@ add_newline = false
 [character]      # The name of the module we are configuring is "character"
 symbol = "➜"     # The "symbol" segment is being set to "➜"
 
-[aws]
-style = "bold blue"
-symbol = "🅰 "
-displayed_items = "region"
-[aws.region_aliases]
-ap-southeast-2 = "au"
+[directory]
+read_only = "🔒"
 
+[aws]
+disabled = true
 
 [username]
 show_always = true
+format = "[$user]($style) in "
 
 [git_status]
 enabled = true
 
-
 [hostname]
 ssh_only = false
-prefix = "⟪"
-suffix = "⟫"
 disabled = false
