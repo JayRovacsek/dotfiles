@@ -20,14 +20,6 @@ else
     export EDITOR='vim'
 fi
 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-
-
 # Custom env:
 export PYTHONWARNINGS="ignore:Unverified HTTPS request"
 export UPDATE_ZSH_DAYS=3
@@ -41,49 +33,50 @@ alias python='python3'
 alias pip='pip3'
 
 # Scripts
-alias monitor="~/dev/internal/scripts/progress.sh"
-alias count="~/dev/internal/sh/scripts/count_files.sh"
-alias fix_rqp=". .~/dev/internal/scripts/fix_rqp.sh"
-alias unset_rqp=". ./~/dev/internal/scripts/unset_rqp.sh"
+alias monitor="~/dev/work/scripts/progress.sh"
+alias count="~/dev/work/scripts/count_files.sh"
+alias fix_rqp=". .~/dev/work/scripts/fix_rqp.sh"
+alias unset_rqp=". ./~/dev/work/scripts/unset_rqp.sh"
+alias count="~/dev/work/scripts/count_files.sh"
 alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron"
-alias update="~/dev/internal/sh/scripts/update.sh"
+alias update="~/dev/work/sh/scripts/update.sh"
 
-# Custom folders internal dev
-alias didv="~/dev/internal/"
-alias dic="~/dev/internal/config/"
-alias dics="~/dev/internal/cs/"
-alias did="~/dev/internal/docker/"
-alias digo="~/dev/internal/Go/"
-alias dij="~/dev/internal/java/"
-alias dijs="~/dev/internal/js/"
-alias dio="~/dev/internal/other/"
-alias dips="~/dev/internal/ps/"
-alias dipy="~/dev/internal/py/"
-alias dirb="~/dev/internal/rb/"
-alias dirs="~/dev/internal/rs/"
-alias dish="~/dev/internal/sh/"
-alias dit="~/dev/internal/tex/"
-alias didrt="~/dev/internal/dart/"
+# Custom folders work dev
+alias didv="~/dev/work/"
+alias dic="~/dev/work/config/"
+alias dics="~/dev/work/cs/"
+alias did="~/dev/work/docker/"
+alias digo="~/dev/work/Go/"
+alias dij="~/dev/work/java/"
+alias dijs="~/dev/work/js/"
+alias dio="~/dev/work/other/"
+alias dips="~/dev/work/ps/"
+alias dipy="~/dev/work/py/"
+alias dirb="~/dev/work/rb/"
+alias dirs="~/dev/work/rs/"
+alias dish="~/dev/work/sh/"
+alias dit="~/dev/work/tex/"
+alias didrt="~/dev/work/dart/"
 
-# Custom folders external dev
-alias dedv="~/dev/external/"
-alias dec="~/dev/external/config/"
-alias decs="~/dev/external/cs/"
-alias ded="~/dev/external/docker/"
-alias dego="~/dev/external/Go/"
-alias dej="~/dev/external/java/"
-alias dejs="~/dev/external/js/"
-alias deo="~/dev/external/other/"
-alias deps="~/dev/external/ps/"
-alias depy="~/dev/external/py/"
-alias derb="~/dev/external/rb/"
-alias ders="~/dev/external/rs/"
-alias desh="~/dev/external/sh/"
-alias det="~/dev/external/tex/"
-alias dedrt="~/dev/external/dart/"
+# Custom folders personal dev
+alias dedv="~/dev/personal/"
+alias dec="~/dev/personal/config/"
+alias decs="~/dev/personal/cs/"
+alias ded="~/dev/personal/docker/"
+alias dego="~/dev/personal/Go/"
+alias dej="~/dev/personal/java/"
+alias dejs="~/dev/personal/js/"
+alias deo="~/dev/personal/other/"
+alias deps="~/dev/personal/ps/"
+alias depy="~/dev/personal/py/"
+alias derb="~/dev/personal/rb/"
+alias ders="~/dev/personal/rs/"
+alias desh="~/dev/personal/sh/"
+alias det="~/dev/personal/tex/"
+alias dedrt="~/dev/personal/dart/"
 
-GOPATH=~/dev/internal/Go
-GOROOT=~/dev/internal/Go
+GOPATH=~/dev/work/Go
+GOROOT=~/dev/work/Go
 export PATH="$PATH:~/.gem/ruby/2.3.0/bin"
 export PATH="$PATH:/usr/local/bin/flutter/bin"
 export PATH="$PATH:~/dev/flutter/bin"
@@ -98,15 +91,10 @@ export PATH="$PATH:~/dev/flutter/bin"
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-
 export WASMTIME_HOME="~/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-eval "$(starship init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -123,3 +111,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+eval "$(starship init zsh)"

@@ -1,10 +1,6 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]      # The name of the module we are configuring is "character"
-symbol = "➜"     # The "symbol" segment is being set to "➜"
-
 [directory]
 read_only = "🔒"
 
@@ -15,9 +11,10 @@ disabled = true
 show_always = true
 format = "[$user]($style) in "
 
-[git_status]
-enabled = true
-
 [hostname]
 ssh_only = false
 disabled = false
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
