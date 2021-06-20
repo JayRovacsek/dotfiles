@@ -31,6 +31,21 @@
   
   services.gvfs.enable = true;
 
+  location.latitude = -32.917;
+  location.longitude = 151.800;
+
+  services.redshift = {
+    enable = true;
+    brightness = {
+      day = "1";
+      night = "1";
+    };
+    temperature = {
+      day = 5500;
+      night = 3700;
+    };
+  };
+
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.opengl.driSupport32Bit = true;
@@ -129,6 +144,7 @@
     vulkan-headers
     yubikey-personalization
     cifs-utils
+    pkexec
   ] ++ [
     # GUI Utilities
     firefox
@@ -145,4 +161,3 @@
 
   system.stateVersion = "21.05"; 
 }
-
