@@ -90,5 +90,6 @@ fi
 export WASMTIME_HOME="~/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
+export PATH="/usr/bin:$PATH"
 
 eval "$(starship init zsh)"
