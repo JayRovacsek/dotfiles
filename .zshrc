@@ -11,8 +11,6 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
@@ -21,8 +19,6 @@ else
 fi
 
 # Custom env:
-export PYTHONWARNINGS="ignore:Unverified HTTPS request"
-export UPDATE_ZSH_DAYS=3
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Application aliases
@@ -35,11 +31,9 @@ alias pip='pip3'
 # Scripts
 alias monitor="~/dev/work/scripts/progress.sh"
 alias count="~/dev/work/scripts/count_files.sh"
-alias fix_rqp=". .~/dev/work/scripts/fix_rqp.sh"
-alias unset_rqp=". ./~/dev/work/scripts/unset_rqp.sh"
-alias count="~/dev/work/scripts/count_files.sh"
-alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron"
-alias update="~/dev/work/sh/scripts/update.sh"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron"
+fi
 
 # Custom folders work dev
 alias didv="~/dev/work/"
@@ -75,11 +69,13 @@ alias desh="~/dev/personal/sh/"
 alias det="~/dev/personal/tex/"
 alias dedrt="~/dev/personal/dart/"
 
-GOPATH=~/dev/work/Go
-GOROOT=~/dev/work/Go
-export PATH="$PATH:~/.gem/ruby/2.3.0/bin"
-export PATH="$PATH:/usr/local/bin/flutter/bin"
-export PATH="$PATH:~/dev/flutter/bin"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	GOPATH=~/dev/work/Go
+	GOROOT=~/dev/work/Go
+	export PATH="$PATH:~/.gem/ruby/2.3.0/bin"
+	export PATH="$PATH:/usr/local/bin/flutter/bin"
+	export PATH="$PATH:~/dev/flutter/bin"
+fi
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -94,21 +90,5 @@ export PATH="$PATH:~/dev/flutter/bin"
 export WASMTIME_HOME="~/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/jrovacsek/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/jrovacsek/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/jrovacsek/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/jrovacsek/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 eval "$(starship init zsh)"
