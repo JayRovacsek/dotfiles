@@ -28,6 +28,8 @@
 
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  services.gnome.core-utilities.enable = false;
   
   services.gvfs.enable = true;
 
@@ -122,7 +124,7 @@
         extraGroups = [ 
           "wheel"
           "docker"
-        ]; # Enable ‘sudo’ for the user.
+        ];
       };
       sarah = {
         isNormalUser = true;
@@ -144,7 +146,6 @@
     vulkan-headers
     yubikey-personalization
     cifs-utils
-    pkexec
   ] ++ [
     # GUI Utilities
     firefox
@@ -153,11 +154,21 @@
     keepassxc
     vscode
     discord
+    gnomeExtensions.caffeine
   ];
 
   services.udev.packages = with pkgs; [
     yubikey-personalization
   ];
+
+  # Auto-update options
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.dates = "04:00";
+  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-21.05";
+
+  # Disable Power Management
+  powerManagement.enable = false;
 
   system.stateVersion = "21.05"; 
 }
