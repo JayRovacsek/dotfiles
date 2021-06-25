@@ -155,6 +155,7 @@
     vscode
     discord
     gnomeExtensions.caffeine
+    gnomeExtensions.dash-to-panel
   ];
 
   services.udev.packages = with pkgs; [
