@@ -146,6 +146,7 @@
     vulkan-headers
     yubikey-personalization
     cifs-utils
+    linuxPackages.nvidia_x11_beta
   ] ++ [
     # GUI Utilities
     firefox
@@ -167,6 +168,12 @@
   system.autoUpgrade.dates = "04:00";
   system.autoUpgrade.allowReboot = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-21.05";
+
+  # Automate purging
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 7d";
+  };
 
   # Disable Power Management
   powerManagement.enable = false;

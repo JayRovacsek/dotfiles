@@ -69,6 +69,9 @@ alias desh="~/dev/personal/sh/"
 alias det="~/dev/personal/tex/"
 alias dedrt="~/dev/personal/dart/"
 
+alias update="sudo nix-channel --update"
+alias rebuild="sudo nixos-rebuild switch"
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	GOPATH=~/dev/work/Go
 	GOROOT=~/dev/work/Go
