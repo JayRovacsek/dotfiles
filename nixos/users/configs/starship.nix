@@ -8,7 +8,7 @@
 
       username = {
         show_always = true;
-        format = "[$user]($style) in ";
+        format = "[$user]($style) on ";
       };
 
       hostname = {
