@@ -1,5 +1,11 @@
 {
-  imports = [ ./common.nix ./alacritty.nix ./starship.nix ];
+  imports = [
+    ./common.nix
+    ./configs/alacritty.nix
+    ./configs/starship.nix
+    ./configs/lsd.nix
+  ];
+
   home = {
     username = "jay";
     homeDirectory = "/home/jay";
