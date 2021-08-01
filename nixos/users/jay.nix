@@ -1,4 +1,4 @@
-{ pkgs }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -41,12 +41,15 @@
       rust-analyzer
       rustc
       rustfmt
+      cargo
       ## NodeJS
       nodejs
       nodePackages.npm
       nodePackages.typescript
       ## Python
       python310
+      ## Nix
+      nixfmt
 
       # Games
       steam
