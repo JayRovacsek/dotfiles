@@ -6,7 +6,6 @@
     ./configs/alacritty.nix
     ./configs/starship.nix
     ./configs/lsd.nix
-    ./configs/vscode.nix
     ./services/nextcloud-client.nix
   ];
 
