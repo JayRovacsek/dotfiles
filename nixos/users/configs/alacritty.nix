@@ -2,6 +2,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      shell.program = "/run/current-system/sw/bin/zsh";
       window = {
         dimenstions = {
           columns = 0;
@@ -58,13 +59,11 @@
         indexed_colors = [ ];
       };
 
-      bell = {
-        animation = "EaseOutExpo";
-        duration = 0;
-        color = "0xffffff";
-      };
+      bell.animation = "EaseOutExpo";
+      bell.duration = 0;
+      bell.color = "0xffffff";
 
-      background_opacity = 1.0;
+      mouse.hide_when_typing = true;
 
       selection.semantic_escape_chars = '',│`|:"' ()[]{}<>'';
       selection.save_to_clipboard = false;

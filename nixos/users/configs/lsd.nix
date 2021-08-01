@@ -20,6 +20,7 @@
         theme = "fancy";
         seperator = " ";
       };
+
       sorting = {
         column = "name";
         reverse = false;

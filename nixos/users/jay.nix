@@ -6,6 +6,8 @@
     ./configs/alacritty.nix
     ./configs/starship.nix
     ./configs/lsd.nix
+    ./configs/vscode.nix
+    ./services/nextcloud-client.nix
   ];
 
   home = {
@@ -16,6 +18,7 @@
       alacritty
       starship
       lsd
+      jq
       htop
       killall
       tree
