@@ -37,6 +37,8 @@
 
       # Development
       vscode
+      ## C
+      gcc
       ## Rust
       rust-analyzer
       rustc
