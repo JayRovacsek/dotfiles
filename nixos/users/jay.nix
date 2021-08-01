@@ -67,6 +67,47 @@
     ];
   };
 
+  home.file = {
+    ".zshrc".text = ''
+      HYPHEN_INSENSITIVE="true"
+      ENABLE_CORRECTION="true"
+      COMPLETION_WAITING_DOTS="true"
+
+      plugins=(
+          git
+          zsh-autosuggestions
+          zsh-syntax-highlighting
+      )
+
+      # Preferred editor for local and remote sessions
+      if [[ -n $SSH_CONNECTION ]]; then
+          export EDITOR='vim'
+      else
+          export EDITOR='vim'
+      fi
+
+      # Application aliases
+      alias nano=vim
+      alias l="lsd -al"
+      alias ls="lsd"
+      alias python='python3'
+      alias pip='pip3'
+      alias update="sudo nix-channel --update"
+      alias rebuild="sudo nixos-rebuild switch"
+
+      if [[ "$OSTYPE" == "darwin"* ]]; then
+          alias vscode="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron"
+      fi
+
+      export WASMTIME_HOME="~/.wasmtime"
+
+      export PATH="$WASMTIME_HOME/bin:$PATH"
+      export PATH="/usr/bin:$PATH"
+
+      eval "$(starship init zsh)"
+    '';
+  };
+
   programs.firefox = { enable = true; };
 
   programs.git = {
