@@ -170,7 +170,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: 3.0
           memory: 1024M
     dns:
     - 192.168.6.2
