@@ -740,8 +740,8 @@ services:
           cpus: 8.0
           memory: 12288M
     dns:
-    - 192.168.5.1
     - 192.168.6.2
+    - 192.168.5.1
     entrypoint:
     - /init
     environment:
