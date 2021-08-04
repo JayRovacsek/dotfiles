@@ -354,11 +354,11 @@ services:
     - docker-entrypoint.sh
     environment:
       GOSU_VERSION: '1.12'
-      MYSQL_DATABASE: authelia
+      MYSQL_DATABASE: ''
       MYSQL_MAJOR: '8.0'
       MYSQL_PASSWORD: ''
       MYSQL_ROOT_PASSWORD: ''
-      MYSQL_USER: jay
+      MYSQL_USER: ''
       MYSQL_VERSION: 8.0.26-1debian10
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     hostname: mysql
