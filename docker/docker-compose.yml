@@ -1490,6 +1490,7 @@ services:
     - protocol: tcp
       published: 80
       target: 80
+    restart: unless-stopped
     volumes:
     - /mnt/zfs/containers/swag:/config:rw
 version: '3'
