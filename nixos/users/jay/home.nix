@@ -60,9 +60,22 @@
       lutris
       runelite
 
+      # Game Requirements
+      ## Origin: https://github.com/lutris/docs/blob/master/Origin.md
+      gnutls
+      libgpgerror
+      libxml2
+      alsaPlugins
+      SDL2
+      dbus
+      libgcrypt
+      wineWowPackages.stable
+      mono
+
       # Communication
       slack
       discord
+      thunderbird
     ];
   };
 
