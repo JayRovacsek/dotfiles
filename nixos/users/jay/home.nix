@@ -36,6 +36,7 @@
       authy
       libvirt
       yubikey-manager-qt
+      unzip
 
       # Development
       vscode
@@ -70,7 +71,6 @@
       dbus
       libgcrypt
       wineWowPackages.stable
-      mono
 
       # Communication
       slack
