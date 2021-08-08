@@ -76,6 +76,7 @@
       slack
       discord
       thunderbird
+      signal-desktop
     ];
   };
 
