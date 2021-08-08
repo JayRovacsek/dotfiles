@@ -37,6 +37,7 @@
       libvirt
       yubikey-manager-qt
       unzip
+      pigz
 
       # Development
       vscode
