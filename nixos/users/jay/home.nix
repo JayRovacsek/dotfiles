@@ -26,6 +26,7 @@
       zsh-autosuggestions
       zsh-syntax-highlighting
       yubikey-personalization
+      pciutils
 
       # Fonts
       nerdfonts
@@ -41,21 +42,54 @@
 
       # Development
       vscode
+
       ## C
       gcc
+
       ## Rust
       rust-analyzer
       rustc
       rustfmt
       cargo
+
       ## NodeJS
       nodejs
       nodePackages.npm
       nodePackages.typescript
+
       ## Python
       python310
+
       ## Nix
       nixfmt
+
+      ## Golang
+      go
+      go-tools
+      delve
+      gopls
+      go-outline
+
+      ## OpenGL
+      glfw
+
+      ## Docker
+      docker-compose
+
+      ## X Utils
+      libxkbcommon
+      xorg.xcbutil
+      xorg.libXtst
+      libpng
+      xorg.xcbutilkeysyms
+      xorg.libX11.dev
+
+      # Gnome
+      gnome.nautilus
+      gnomeExtensions.screenshot-tool
+
+      ## Misc
+      pkg-config
 
       # Games
       steam
@@ -78,6 +112,7 @@
       discord
       thunderbird
       signal-desktop
+      zoom-us
     ];
   };
 
@@ -117,6 +152,8 @@
 
       export PATH="$WASMTIME_HOME/bin:$PATH"
       export PATH="/usr/bin:$PATH"
+      export PATH=$PATH:$(go env GOPATH)/bin
+      export GOPATH=$(go env GOPATH)
 
       eval "$(starship init zsh)"
     '';
