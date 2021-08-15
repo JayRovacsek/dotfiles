@@ -27,6 +27,7 @@
       zsh-syntax-highlighting
       yubikey-personalization
       pciutils
+      nmap
 
       # Fonts
       nerdfonts
