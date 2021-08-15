@@ -8,6 +8,15 @@ networks:
       - gateway: 192.168.9.1
         subnet: 192.168.9.0/24
       driver: default
+  cache:
+    driver: macvlan
+    driver_opts:
+      parent: enp9s0.16
+    ipam:
+      config:
+      - gateway: 192.168.16.1
+        subnet: 192.168.16.0/24
+      driver: default
   dns:
     driver: macvlan
     driver_opts:
