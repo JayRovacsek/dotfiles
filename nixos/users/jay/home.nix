@@ -85,6 +85,9 @@
       xorg.xcbutilkeysyms
       xorg.libX11.dev
 
+      ## Tex
+      texlive.combined.scheme-full
+
       # Gnome
       gnome.nautilus
       gnomeExtensions.screenshot-tool
