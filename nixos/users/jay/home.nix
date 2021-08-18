@@ -94,6 +94,7 @@
 
       ## Misc
       pkg-config
+      hunspell
 
       # Games
       steam
