@@ -95,6 +95,7 @@
       ## Misc
       pkg-config
       hunspell
+      hunspellDicts.en-au
 
       # Games
       steam
