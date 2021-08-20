@@ -8,15 +8,6 @@ networks:
       - gateway: 192.168.9.1
         subnet: 192.168.9.0/24
       driver: default
-  cache:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.16
-    ipam:
-      config:
-      - gateway: 192.168.16.1
-        subnet: 192.168.16.0/24
-      driver: default
   dns:
     driver: macvlan
     driver_opts:
@@ -35,15 +26,6 @@ networks:
       - gateway: 192.168.4.1
         subnet: 192.168.4.0/24
       driver: default
-  guest:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.2
-    ipam:
-      config:
-      - gateway: 192.168.2.1
-        subnet: 192.168.2.0/24
-      driver: default
   home_assistant:
     driver: macvlan
     driver_opts:
@@ -52,33 +34,6 @@ networks:
       config:
       - gateway: 192.168.12.1
         subnet: 192.168.12.0/24
-      driver: default
-  iot:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.3
-    ipam:
-      config:
-      - gateway: 192.168.3.1
-        subnet: 192.168.3.0/24
-      driver: default
-  management:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.15
-    ipam:
-      config:
-      - gateway: 192.168.15.1
-        subnet: 192.168.15.0/24
-      driver: default
-  minecraft:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.11
-    ipam:
-      config:
-      - gateway: 192.168.11.1
-        subnet: 192.168.11.0/24
       driver: default
   nextcloud:
     driver: macvlan
@@ -98,137 +53,7 @@ networks:
       - gateway: 192.168.5.1
         subnet: 192.168.5.0/24
       driver: default
-  vuln:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.14
-    ipam:
-      config:
-      - gateway: 192.168.14.1
-        subnet: 192.168.14.0/24
-      driver: default
-  wlan:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.8
-    ipam:
-      config:
-      - gateway: 192.168.8.1
-        subnet: 192.168.8.0/24
-      driver: default
-  work:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.7
-    ipam:
-      config:
-      - gateway: 192.168.7.1
-        subnet: 192.168.7.0/24
-      driver: default
-  yt_download:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.13
-    ipam:
-      config:
-      - gateway: 192.168.13.1
-        subnet: 192.168.13.0/24
-      driver: default
 services:
-  amd:
-    cap_add:
-    - AUDIT_WRITE
-    - CHOWN
-    - DAC_OVERRIDE
-    - FOWNER
-    - FSETID
-    - KILL
-    - MKNOD
-    - NET_BIND_SERVICE
-    - NET_RAW
-    - SETFCAP
-    - SETGID
-    - SETPCAP
-    - SETUID
-    - SYS_CHROOT
-    cap_drop:
-    - AUDIT_CONTROL
-    - BLOCK_SUSPEND
-    - DAC_READ_SEARCH
-    - IPC_LOCK
-    - IPC_OWNER
-    - LEASE
-    - LINUX_IMMUTABLE
-    - MAC_ADMIN
-    - MAC_OVERRIDE
-    - NET_ADMIN
-    - NET_BROADCAST
-    - SYSLOG
-    - SYS_ADMIN
-    - SYS_BOOT
-    - SYS_MODULE
-    - SYS_NICE
-    - SYS_PACCT
-    - SYS_PTRACE
-    - SYS_RAWIO
-    - SYS_RESOURCE
-    - SYS_TIME
-    - SYS_TTY_CONFIG
-    - WAKE_ALARM
-    container_name: amd
-    deploy:
-      resources:
-        limits:
-          cpus: 3.0
-          memory: 1024M
-    dns:
-    - 192.168.6.2
-    - 192.168.4.1
-    entrypoint:
-    - /init
-    environment:
-      ARL_TOKEN: ''
-      AUTOSTART: "true"
-      BITRATE: '320'
-      Concurrency: '3'
-      DOWNLOADMODE: wanted
-      EMBEDDED_COVER_QUALITY: '80'
-      FALLBACKSEARCH: "True"
-      FORCECONVERT: "false"
-      FORMAT: MP3
-      FilePermissions: '666'
-      FolderPermissions: '766'
-      HOME: /root
-      LIST: both
-      LidarrAPIkey: ''
-      LidarrUrl: https://lidarr.rovacsek.com
-      MBRAINZMIRROR: https://musicbrainz.org
-      MBRATELIMIT: '1'
-      MatchDistance: '10'
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      POSTPROCESSTHREADS: '8'
-      SCRIPTINTERVAL: 6h
-      SearchType: both
-      TERM: xterm
-      TITLESHORT: AMD
-      VERSION: 1.1.5
-      XDG_CONFIG_HOME: /config/deemix/xdg
-      replaygain: "true"
-      requirequality: "false"
-    hostname: amd
-    image: randomninjaatk/amd:latest
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      download:
-        ipv4_address: 192.168.4.142
-    restart: unless-stopped
-    volumes:
-    - /mnt/zfs/containers/amd:/config:rw
-    - /mnt/zfs/downloads:/downloads-amd:rw
-    working_dir: /config
   authelia:
     cap_add:
     - AUDIT_WRITE
@@ -286,7 +111,7 @@ services:
     - 192.168.6.2
     - 192.168.9.1
     entrypoint:
-    - /usr/local/bin/entrypoint.sh
+    - /app/entrypoint.sh
     environment:
       PATH: /app:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PGID: '10006'
@@ -363,11 +188,11 @@ services:
     - docker-entrypoint.sh
     environment:
       GOSU_VERSION: '1.12'
-      MYSQL_DATABASE: ''
+      MYSQL_DATABASE: 'authelia'
       MYSQL_MAJOR: '8.0'
-      MYSQL_PASSWORD: ''
-      MYSQL_ROOT_PASSWORD: ''
-      MYSQL_USER: ''
+      MYSQL_PASSWORD: '8sm6O9KqW17mTdgPMZ4C1CkH8pGmzE38'
+      MYSQL_ROOT_PASSWORD: '9LPeAUWBNQ375uqwLfBkCcEhqVfwN3yo'
+      MYSQL_USER: 'DsSlDgh2IxOInBQj'
       MYSQL_VERSION: 8.0.26-1debian10
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     hostname: mysql
@@ -870,7 +695,6 @@ services:
     - /mnt/zfs/containers/lidarr:/config:rw
     - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
     - /mnt/zfs/downloads:/downloads:rw
-    - /mnt/zfs/downloads:/downloads-amd:rw
     - /mnt/zfs/music:/music:rw
   nextcloud:
     cap_add:
@@ -944,7 +768,7 @@ services:
       options: {}
     networks:
       nextcloud:
-        ipv4_address: 192.168.10.3
+        ipv4_address: 192.168.10.2
     ports:
     - protocol: tcp
       published: 443
@@ -1013,7 +837,7 @@ services:
       LANG: en_US.UTF-8
       LANGUAGE: en_US.UTF-8
       MYSQL_DIR: /config
-      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: 'n6Kbt44e2nR7WRdGjTeJqRv39PQeivYk'
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PGID: '10012'
       PUID: '982'
@@ -1183,7 +1007,7 @@ services:
       ServerIP: 192.168.6.2
       TZ: Australia/NSW
       VERSION: v5.3.1
-      WEBPASSWORD: ''
+      WEBPASSWORD: 'SJDiPAbYjPLw7UsQRUH3B5pZA8Ppm5TU'
     hostname: pihole
     image: testdasi/pihole-dot-doh:latest
     ipc: private
@@ -1214,39 +1038,6 @@ services:
     - /mnt/zfs/containers/pihole/pihole:/etc/pihole:rw
     - /mnt/zfs/containers/pihole/dnsmasq.d:/etc/dnsmasq.d:rw
     - /mnt/zfs/containers/pihole/config:/config:rw
-  portainer:
-    container_name: portainer
-    deploy:
-      resources:
-        limits:
-          cpus: 4.0
-          memory: 4096M
-    entrypoint:
-    - /portainer
-    environment:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-    hostname: portainer
-    image: portainer/portainer-ce
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    mac_address: 02:42:ac:11:00:02
-    networks:
-      bridge:
-        ipv4_address: 172.17.0.2
-    ports:
-    - protocol: tcp
-      published: 9000
-      target: 9000
-    privileged: true
-    restart: always
-    security_opt:
-    - label=disable
-    volumes:
-    - /var/run/docker.sock:/var/run/docker.sock:rw
-    - /mnt/zfs/containers/portainer:/data:rw
-    working_dir: /
   radarr:
     cap_add:
     - AUDIT_WRITE
