@@ -188,11 +188,11 @@ services:
     - docker-entrypoint.sh
     environment:
       GOSU_VERSION: '1.12'
-      MYSQL_DATABASE: 'authelia'
+      MYSQL_DATABASE: ''
       MYSQL_MAJOR: '8.0'
-      MYSQL_PASSWORD: '8sm6O9KqW17mTdgPMZ4C1CkH8pGmzE38'
-      MYSQL_ROOT_PASSWORD: '9LPeAUWBNQ375uqwLfBkCcEhqVfwN3yo'
-      MYSQL_USER: 'DsSlDgh2IxOInBQj'
+      MYSQL_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_USER: ''
       MYSQL_VERSION: 8.0.26-1debian10
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
     hostname: mysql
@@ -837,7 +837,7 @@ services:
       LANG: en_US.UTF-8
       LANGUAGE: en_US.UTF-8
       MYSQL_DIR: /config
-      MYSQL_ROOT_PASSWORD: 'n6Kbt44e2nR7WRdGjTeJqRv39PQeivYk'
+      MYSQL_ROOT_PASSWORD: ''
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PGID: '10012'
       PUID: '982'
@@ -1007,7 +1007,7 @@ services:
       ServerIP: 192.168.6.2
       TZ: Australia/NSW
       VERSION: v5.3.1
-      WEBPASSWORD: 'SJDiPAbYjPLw7UsQRUH3B5pZA8Ppm5TU'
+      WEBPASSWORD: ''
     hostname: pihole
     image: testdasi/pihole-dot-doh:latest
     ipc: private
