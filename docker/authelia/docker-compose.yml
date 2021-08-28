@@ -1,0 +1,130 @@
+networks:
+  authelia:
+    driver: macvlan
+    driver_opts:
+      parent: enp9s0.9
+    ipam:
+      config:
+      - gateway: 192.168.9.1
+        subnet: 192.168.9.0/24
+      driver: default
+services:
+  authelia:
+    command:
+    - --config /config/configuration.yml
+    container_name: authelia
+    depends_on:
+      authelia-mysql:
+        condition: service_started
+      authelia-redis:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 4096M
+    dns:
+    - 192.168.6.2
+    - 192.168.9.1
+    entrypoint:
+    - /app/entrypoint.sh
+    environment:
+      PATH: /app:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      PGID: '10006'
+      PUID: '991'
+    hostname: authelia
+    image: authelia/authelia:latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      authelia:
+        ipv4_address: 192.168.9.2
+    ports:
+    - protocol: tcp
+      published: 9091
+      target: 9091
+    restart: unless-stopped
+    volumes:
+    - /mnt/zfs/containers/authelia:/config:rw
+    working_dir: /app
+  authelia-mysql:
+    command:
+    - mysqld
+    container_name: authelia-mysql
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 2048M
+    dns:
+    - 192.168.6.2
+    - 192.168.9.1
+    entrypoint:
+    - docker-entrypoint.sh
+    environment:
+      GOSU_VERSION: '1.12'
+      MYSQL_DATABASE: ''
+      MYSQL_MAJOR: '8.0'
+      MYSQL_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_USER: ''
+      MYSQL_VERSION: 8.0.26-1debian10
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    hostname: mysql
+    image: mysql:latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      authelia:
+        ipv4_address: 192.168.9.4
+    ports:
+    - protocol: tcp
+      published: 3306
+      target: 3306
+    - protocol: tcp
+      published: 33060
+      target: 33060
+    restart: unless-stopped
+    volumes:
+    - /mnt/zfs/databases/authelia:/var/lib/mysql:rw
+  authelia-redis:
+    command:
+    - redis-server
+    container_name: authelia-redis
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 1024M
+    dns:
+    - 192.168.6.2
+    - 192.168.9.1
+    entrypoint:
+    - docker-entrypoint.sh
+    environment:
+      GOSU_VERSION: '1.12'
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      REDIS_DOWNLOAD_SHA: 4b9a75709a1b74b3785e20a6c158cab94cf52298aa381eea947a678a60d551ae
+      REDIS_DOWNLOAD_URL: http://download.redis.io/releases/redis-6.2.5.tar.gz
+      REDIS_VERSION: 6.2.5
+    hostname: redis
+    image: redis:latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      authelia:
+        ipv4_address: 192.168.9.3
+    ports:
+    - protocol: tcp
+      published: 6379
+      target: 6379
+    restart: unless-stopped
+    working_dir: /data
+version: '3'
+
