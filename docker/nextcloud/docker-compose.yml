@@ -1,0 +1,99 @@
+networks:
+  nextcloud:
+    driver: macvlan
+    driver_opts:
+      parent: enp9s0.10
+    ipam:
+      config:
+      - gateway: 192.168.10.1
+        subnet: 192.168.10.0/24
+      driver: default
+services:
+  nextcloud:
+    container_name: nextcloud
+    depends_on:
+      nextcloud-mariadb:
+        condition: service_started
+    deploy:
+      resources:
+        limits:
+          cpus: 4.0
+          memory: 4096M
+    dns:
+    - 192.168.6.2
+    - 192.168.10.1
+    entrypoint:
+    - /init
+    environment:
+      HOME: /root
+      LD_PRELOAD: /usr/lib/preloadable_libiconv.so
+      NEXTCLOUD_PATH: /config/www/nextcloud
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      PGID: '10003'
+      PUID: '988'
+      TERM: xterm
+      TZ: Australia/NSW
+      UMASK: '022'
+    hostname: nextcloud
+    image: ghcr.io/linuxserver/nextcloud:amd64-latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      nextcloud:
+        ipv4_address: 192.168.10.2
+    ports:
+    - protocol: tcp
+      published: 443
+      target: 443
+    - protocol: tcp
+      published: 80
+      target: 80
+    restart: unless-stopped
+    volumes:
+    - /mnt/zfs/containers/nextcloud:/config:rw
+    - /mnt/zfs/nextcloud:/data:rw
+  nextcloud-mariadb:
+    container_name: nextcloud-mariadb
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 1024M
+    dns:
+    - 192.168.6.2
+    - 192.168.10.1
+    entrypoint:
+    - /init
+    environment:
+      DATADIR: /config/databases
+      HOME: /root
+      LANG: en_US.UTF-8
+      LANGUAGE: en_US.UTF-8
+      MYSQL_DIR: /config
+      MYSQL_ROOT_PASSWORD: ''
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      PGID: '10012'
+      PUID: '982'
+      TERM: xterm
+      TZ: Australia/NSW
+      UMASK: '022'
+    hostname: mariadb
+    image: ghcr.io/linuxserver/mariadb:amd64-latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      nextcloud:
+        ipv4_address: 192.168.10.3
+    ports:
+    - protocol: tcp
+      published: 3306
+      target: 3306
+    restart: unless-stopped
+    volumes:
+    - /mnt/zfs/databases/nextcloud:/config:rw
+version: '3'
+
