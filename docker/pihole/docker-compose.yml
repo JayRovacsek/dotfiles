@@ -8,52 +8,7 @@ networks:
       - gateway: 192.168.6.1
         subnet: 192.168.6.0/24
       driver: default
-  home_assistant:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.12
-    ipam:
-      config:
-      - gateway: 192.168.12.1
-        subnet: 192.168.12.0/24
-      driver: default
 services:
-  home-assistant:
-    container_name: home-assistant
-    deploy:
-      resources:
-        limits:
-          cpus: 2.0
-          memory: 2048M
-    dns:
-    - 192.168.6.2
-    - 192.168.12.1
-    entrypoint:
-    - /init
-    environment:
-      LANG: C.UTF-8
-      PATH: /usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      S6_BEHAVIOUR_IF_STAGE2_FAILS: '2'
-      S6_CMD_WAIT_FOR_SERVICES: '1'
-      S6_SERVICES_GRACETIME: '220000'
-      WHEELS_LINKS: https://wheels.home-assistant.io/alpine-3.13/amd64/
-    hostname: homeassistant
-    image: homeassistant/home-assistant:latest
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      home_assistant:
-        ipv4_address: 192.168.12.2
-    ports:
-    - protocol: tcp
-      published: 8123
-      target: 8123
-    restart: unless-stopped
-    volumes:
-    - /mnt/zfs/home_assistant:/config:rw
-    working_dir: /config
   pihole:
     container_name: pihole
     deploy:
@@ -118,4 +73,3 @@ services:
     - /mnt/zfs/containers/pihole/dnsmasq.d:/etc/dnsmasq.d:rw
     - /mnt/zfs/containers/pihole/config:/config:rw
 version: '3'
-
