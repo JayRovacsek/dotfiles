@@ -10,8 +10,6 @@ networks:
       driver: default
 services:
   authelia:
-    command:
-    - --config /config/configuration.yml
     container_name: authelia
     depends_on:
       authelia-mysql:
@@ -26,8 +24,6 @@ services:
     dns:
     - 192.168.6.2
     - 192.168.9.1
-    entrypoint:
-    - /app/entrypoint.sh
     environment:
       PATH: /app:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PGID: '10006'
