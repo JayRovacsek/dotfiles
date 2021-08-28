@@ -90,7 +90,13 @@
 
       # Gnome
       gnome.nautilus
+      gnome.gnome-tweaks
+
+      ## Gnome Extensions
+      gnomeExtensions.caffeine
       gnomeExtensions.screenshot-tool
+      gnomeExtensions.dash-to-panel
+      gnomeExtensions.application-volume-mixer
 
       ## Misc
       pkg-config
