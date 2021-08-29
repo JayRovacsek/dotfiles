@@ -1,0 +1,36 @@
+networks:
+  lan:
+    driver: macvlan
+    driver_opts:
+      parent: enp9s0
+    ipam:
+      config:
+      - gateway: 192.168.1.1
+        subnet: 192.168.1.0/24
+      driver: default
+services:
+  speedtest:
+    container_name: speedtest
+    image: henrywhitaker3/speedtest-tracker
+    networks:
+      lan:
+        ipv4_address: 192.168.1.222
+    ports:
+    - 8765:80
+    dns:
+    - 192.168.6.2
+    - 192.168.12.1
+    volumes:
+    - /mnt/zfs/logs/speedtest:/config
+    environment:
+    - TZ=Australia/NSW
+    - PGID=996
+    - PUID=10016
+    - OOKLA_EULA_GDPR=true
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "10"
+        max-size: "200k"
+    restart: unless-stopped
+version: '3'
