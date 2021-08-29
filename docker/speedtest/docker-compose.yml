@@ -19,7 +19,6 @@ services:
     - 8765:80
     dns:
     - 192.168.6.2
-    - 192.168.12.1
     volumes:
     - /mnt/zfs/logs/speedtest:/config
     environment:
