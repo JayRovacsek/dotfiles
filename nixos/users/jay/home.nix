@@ -91,6 +91,7 @@
       # Gnome
       gnome.nautilus
       gnome.gnome-tweaks
+      gjs
 
       ## Gnome Extensions
       gnomeExtensions.caffeine
