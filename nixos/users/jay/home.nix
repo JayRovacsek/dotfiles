@@ -1,17 +1,24 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
+let
+  machine  = import ./machine.nix;
+  isLinux = machine.operatingSystem != "Darwin";
+  isDarwin = machine.operatingSystem == "Darwin";
+in
 {
+
   imports = [
     ./common.nix
     ./configs/alacritty.nix
     ./configs/starship.nix
     ./configs/lsd.nix
+  ] ++ lib.optional isLinux 
+  [
     ./services/nextcloud-client.nix
   ];
 
   home = {
-    username = "jay";
-    homeDirectory = "/home/jay";
+    username = if isLinux then "jay" else "jrovacsek";
+    homeDirectory = if isLinux then "/home/jay" else "/Users/jrovacsek";
     packages = with pkgs; [
       # CLI Utilities
       alacritty
@@ -25,19 +32,14 @@
       zsh-completions
       zsh-autosuggestions
       zsh-syntax-highlighting
-      yubikey-personalization
-      pciutils
       nmap
 
       # Fonts
       nerdfonts
 
       # Productivity
-      nextcloud-client
       keepassxc
-      authy
       libvirt
-      yubikey-manager-qt
       unzip
       pigz
 
@@ -71,22 +73,40 @@
       gopls
       go-outline
 
-      ## OpenGL
-      glfw
-
       ## Docker
       docker-compose
 
-      ## X Utils
-      libxkbcommon
-      xorg.xcbutil
-      xorg.libXtst
-      libpng
-      xorg.xcbutilkeysyms
-      xorg.libX11.dev
-
       ## Tex
       texlive.combined.scheme-full
+
+      ## Misc
+      pkg-config
+      hunspell
+      hunspellDicts.en-au
+
+      # Communication
+      slack
+    ] ++ lib.optional isLinux [
+      # CLI Utilities
+      alacritty
+      starship
+      lsd
+      jq
+      htop
+      killall
+      tree
+      oh-my-zsh
+      zsh-completions
+      zsh-autosuggestions
+      zsh-syntax-highlighting
+      yubikey-personalization
+      pciutils
+      nmap
+
+      # Productivity
+      nextcloud-client
+      authy
+      yubikey-manager-qt
 
       # Gnome
       gnome.nautilus
@@ -99,10 +119,16 @@
       gnomeExtensions.dash-to-panel
       gnomeExtensions.application-volume-mixer
 
-      ## Misc
-      pkg-config
-      hunspell
-      hunspellDicts.en-au
+      ## X Utils
+      libxkbcommon
+      xorg.xcbutil
+      xorg.libXtst
+      libpng
+      xorg.xcbutilkeysyms
+      xorg.libX11.dev
+
+      ## OpenGL
+      glfw
 
       # Games
       steam
@@ -121,11 +147,9 @@
       wineWowPackages.stable
 
       # Communication
-      slack
       discord
       thunderbird
       signal-desktop
-      zoom-us
     ];
   };
 
