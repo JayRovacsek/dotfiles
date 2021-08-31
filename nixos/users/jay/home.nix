@@ -89,6 +89,7 @@ in
     ] ++ lib.optional isLinux [
       # CLI Utilities
       alacritty
+      aws
       starship
       lsd
       jq
