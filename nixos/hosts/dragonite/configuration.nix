@@ -87,7 +87,7 @@
         server string = smbnix
         netbios name = smbnix
         security = user 
-        hosts allow = 192.168.1.0/24  localhost
+        hosts allow = 192.168.1.0/24 192.168.8.0/24 localhost
         hosts deny = 0.0.0.0/0
         guest account = nobody
         map to guest = bad user
