@@ -1,3 +1,7 @@
+networks:
+  reverse_proxy:
+    external: true
+    name: reverse_proxy
 services:
   jellyfin:
     container_name: jellyfin
@@ -43,5 +47,6 @@ services:
     - /mnt/zfs/movies:/movies:rw
     - /mnt/zfs/music:/music:rw
     - /mnt/zfs/tv:/tv:rw
+    - /tmp/transcodes:/config/transcodes:rw
 version: '3'
 

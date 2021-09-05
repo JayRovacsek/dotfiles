@@ -1,58 +1,8 @@
 networks:
   reverse_proxy:
-    driver: macvlan
-    driver_opts:
-      parent: enp9s0.5
-    ipam:
-      config:
-      - gateway: 192.168.5.1
-        subnet: 192.168.5.0/24
-      driver: default
+    external: true
+    name: reverse_proxy
 services:
-  jellyfin:
-    container_name: jellyfin
-    deploy:
-      resources:
-        limits:
-          cpus: 8.0
-          memory: 12288M
-    dns:
-    - 192.168.6.2
-    - 192.168.5.1
-    entrypoint:
-    - /init
-    environment:
-      HOME: /root
-      LANG: en_US.UTF-8
-      LANGUAGE: en_US.UTF-8
-      NVIDIA_DRIVER_CAPABILITIES: all
-      NVIDIA_VISIBLE_DEVICES: all
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      PGID: '10002'
-      PUID: '998'
-      TERM: xterm
-      TZ: Australia/NSW
-      UMASK: '022'
-    hostname: jellyfin
-    image: ghcr.io/linuxserver/jellyfin:amd64-latest
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      reverse_proxy:
-        ipv4_address: 192.168.5.4
-    ports:
-    - protocol: tcp
-      published: 8096
-      target: 8096
-    restart: unless-stopped
-    runtime: nvidia
-    volumes:
-    - /mnt/zfs/containers/jellyfin:/config:rw
-    - /mnt/zfs/movies:/movies:rw
-    - /mnt/zfs/music:/music:rw
-    - /mnt/zfs/tv:/tv:rw
   swag:
     container_name: swag
     deploy:
