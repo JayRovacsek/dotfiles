@@ -1,0 +1,4 @@
+{
+  hostname = "alakazam";
+  operatingSystem = "Linux";
+}

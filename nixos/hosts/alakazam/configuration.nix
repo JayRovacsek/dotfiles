@@ -110,7 +110,6 @@
     yubikey-personalization
     cifs-utils
     linuxPackages.nvidia_x11_beta
-    wget
     firefox
     tor-browser-bundle-bin
     ungoogled-chromium
@@ -118,6 +117,11 @@
     gnomeExtensions.caffeine
     gnomeExtensions.dash-to-panel
     nerdfonts
+    gnupg
+    pinentry-curses
+    pinentry-gnome
+    paperkey
+
   ];
 
   fonts.fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
