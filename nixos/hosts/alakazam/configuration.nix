@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -11,18 +7,44 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "nodev";
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    useOSProber = true;
+    enableCryptodisk = true;
+  };
 
-  networking.hostName = "alakazam"; # Define your hostname.
+  boot.initrd.luks.devices.crypted = {
+    device = "/dev/disk/by-uuid/7cf02c33-9404-45af-9e53-2fa65aa59027";
+    preLVM = true;
+  };
 
   time.timeZone = "Australia/NSW";
 
-  networking.useDHCP = false;
-  networking.interfaces.enp0s31f6.useDHCP = true;
-
-  services.gnome.core-utilities.enable = false;
+  networking = {
+    hostName = "alakazam";
+    useDHCP = false;
+    firewall.allowedTCPPorts = [ 22 ];
+    nameservers = [ "192.168.6.2" ];
+    defaultGateway = "192.168.1.1";
+    vlans = {
+      vlan3 = {
+        id = 3;
+        interface = "enp0s31f6";
+      };
+    };
+    interfaces = {
+      enp0s31f6.useDHCP = true;
+      vlan3.ipv4.addresses = [{
+        address = "192.168.3.250";
+        prefixLength = 24;
+      }];
+    };
+  };
 
   services.gvfs.enable = true;
 
@@ -97,31 +119,47 @@
   };
 
   environment.systemPackages = with pkgs; [
-    zsh
+    cifs-utils
     dnsutils
     exfat
-    libfido2
-    vim
-    wget
-    wine
-    vulkan-tools
-    vulkan-extension-layer
-    vulkan-headers
-    yubikey-personalization
-    cifs-utils
-    linuxPackages.nvidia_x11_beta
-    firefox
-    tor-browser-bundle-bin
-    ungoogled-chromium
-    git
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-panel
-    nerdfonts
     gnupg
+    libfido2
+    linuxPackages.nvidia_x11_beta
+    nerdfonts
+    paperkey
     pinentry-curses
     pinentry-gnome
-    paperkey
+    traceroute
+    vim
+    vulkan-extension-layer
+    vulkan-headers
+    vulkan-tools
+    wget
+    wget
+    wine
+    zsh
+  ];
 
+  environment.gnome.excludePackages = with pkgs; [
+    gnome.cheese
+    gnome-photos
+    gnome.gnome-music
+    gnome.gedit
+    epiphany
+    evince
+    gnome.gnome-characters
+    gnome.totem
+    gnome.tali
+    gnome.iagno
+    gnome.hitori
+    gnome.atomix
+    gnome.gnome-weather
+    gnome.gnome-screenshot
+    gnome.gnome-contacts
+    gnome.gnome-maps
+    gnome.geary
+    gnome-tour
+    gnome-connections
   ];
 
   fonts.fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
@@ -130,8 +168,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  networking.firewall.allowedTCPPorts = [ 22 ];
 
   services.openssh.enable = true;
 
@@ -150,7 +186,7 @@
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "04:00";
   system.autoUpgrade.allowReboot = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-21.05";
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
   system.stateVersion = "21.05";
 }
 
