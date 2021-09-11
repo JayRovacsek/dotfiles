@@ -3,14 +3,16 @@ let
   profile = import ./profile.nix;
   isLinux = profile.operatingSystem == "linux";
   isDarwin = !isLinux;
-  apps = import ./packages/meta.nix;
+  meta = import ./packages/meta.nix;
 in {
-  imports = [ ./common.nix ];
+  imports = [ ./common.nix ] ++ meta.services;
+
+  nixpkgs.config.allowUnfree = true;
 
   home = {
     username = if isLinux then "jay" else "jrovacsek";
     homeDirectory = if isLinux then "/home/jay" else "/Users/jrovacsek";
-    packages = apps.packages;
+    packages = meta.packages;
   };
 
   home.activation = if isLinux then

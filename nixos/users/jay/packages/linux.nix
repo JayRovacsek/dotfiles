@@ -1,11 +1,10 @@
 {
-  linux = with import <nixpkgs> { }; [
+  packages = with import <nixpkgs> { }; [
     # CLI Utilities
     killall
 
     # Productivity
     nextcloud-client
-    authy
     yubikey-manager-qt
 
     # Gnome

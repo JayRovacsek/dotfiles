@@ -1,5 +1,5 @@
 {
-  darwin = with import <nixpkgs> { }; [
+  packages = with import <nixpkgs> { }; [
     # CLI Utilities
     alacritty
     aws
