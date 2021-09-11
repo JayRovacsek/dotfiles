@@ -105,6 +105,12 @@
   };
 
   programs = {
+    gnome-terminal.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    steam.enable = true;
     zsh = {
       enable = true;
       autosuggestions.enable = true;
@@ -115,7 +121,6 @@
         theme = "risto";
       };
     };
-    gnome-terminal.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -163,11 +168,6 @@
   ];
 
   fonts.fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   services.openssh.enable = true;
 

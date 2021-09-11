@@ -36,7 +36,6 @@
     # Games
     lutris
     runelite
-    steam
 
     # Game Requirements
     ## Origin: https://github.com/lutris/docs/blob/master/Origin.md
