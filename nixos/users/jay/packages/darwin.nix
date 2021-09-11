@@ -3,20 +3,20 @@
     # CLI Utilities
     alacritty
     aws
-    starship
-    lsd
-    jq
     git
     htop
-    tree
+    jq
+    lsd
     nmap
-    zsh
     oh-my-zsh
-    zsh-completions
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    yubikey-personalization
     pciutils
+    starship
+    tree
+    yubikey-personalization
+    zsh
+    zsh-autosuggestions
+    zsh-completions
+    zsh-syntax-highlighting
 
     # Fonts
     nerdfonts
@@ -24,8 +24,8 @@
     # Productivity
     keepassxc
     libvirt
-    unzip
     pigz
+    unzip
 
     # Browsers
     firefox
@@ -37,10 +37,10 @@
     gcc
 
     ## Rust
+    cargo
     rust-analyzer
     rustc
     rustfmt
-    cargo
 
     ## NodeJS
     nodejs
@@ -54,11 +54,11 @@
     nixfmt
 
     ## Golang
-    go
-    go-tools
     delve
-    gopls
+    go
     go-outline
+    go-tools
+    gopls
 
     ## Docker
     docker-compose
@@ -67,9 +67,9 @@
     texlive.combined.scheme-full
 
     ## Misc
-    pkg-config
     hunspell
     hunspellDicts.en-au
+    pkg-config
 
     # Communication
     slack

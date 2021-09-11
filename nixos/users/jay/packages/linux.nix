@@ -12,50 +12,49 @@
     ungoogled-chromium
 
     # Gnome
-    gnome.nautilus
-    gnome.gnome-tweaks
     gjs
+    gnome.gnome-tweaks
+    gnome.nautilus
 
     ## Gnome Extensions
-    gnomeExtensions.caffeine
-    gnomeExtensions.screenshot-tool
-    gnomeExtensions.dash-to-panel
     gnomeExtensions.application-volume-mixer
+    gnomeExtensions.caffeine
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.screenshot-tool
 
     ## X Utils
-    libxkbcommon
-    xorg.xcbutil
-    xorg.libXtst
     libpng
-    xorg.xcbutilkeysyms
+    libxkbcommon
     xorg.libX11.dev
+    xorg.libXtst
+    xorg.xcbutil
+    xorg.xcbutilkeysyms
 
     ## OpenGL
     glfw
 
     # Games
-    steam
     lutris
     runelite
+    steam
 
     # Game Requirements
     ## Origin: https://github.com/lutris/docs/blob/master/Origin.md
+    alsaPlugins
+    dbus
     gnutls
+    libgcrypt
     libgpgerror
     libxml2
-    alsaPlugins
-    SDL2
-    dbus
-    libgcrypt
-    wine
     mono
-
-    winetricks
     protontricks
+    SDL2
+    wine
+    winetricks
 
     # Communication
     discord
-    thunderbird
     signal-desktop
+    thunderbird
   ];
 }
