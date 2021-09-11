@@ -1,11 +1,15 @@
 {
-  packages = with import <nixpkgs> { }; [
+  packages = with import <nixpkgs> { config.allowUnfree = true; }; [
     # CLI Utilities
     killall
 
     # Productivity
     nextcloud-client
     yubikey-manager-qt
+
+    # Browsers
+    tor-browser-bundle-bin
+    ungoogled-chromium
 
     # Gnome
     gnome.nautilus

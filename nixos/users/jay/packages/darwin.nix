@@ -1,11 +1,12 @@
 {
-  packages = with import <nixpkgs> { }; [
+  packages = with import <nixpkgs> { config.allowUnfree = true; }; [
     # CLI Utilities
     alacritty
     aws
     starship
     lsd
     jq
+    git
     htop
     tree
     nmap
@@ -25,6 +26,9 @@
     libvirt
     unzip
     pigz
+
+    # Browsers
+    firefox
 
     # Development
     vscode
