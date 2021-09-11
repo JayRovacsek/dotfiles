@@ -25,6 +25,7 @@
     keepassxc
     libvirt
     pigz
+    wireshark
     unzip
 
     # Browsers
