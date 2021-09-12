@@ -9,6 +9,57 @@ networks:
         subnet: 192.168.4.0/24
       driver: default
 services:
+  amd:
+    container_name: amd
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 1024M
+    dns:
+    - 192.168.6.2
+    entrypoint:
+    - /init
+    environment:
+      ARL_TOKEN: ''
+      AUTOSTART: "true"
+      BITRATE: '320'
+      Concurrency: '3'
+      DOWNLOADMODE: wanted
+      EMBEDDED_COVER_QUALITY: '80'
+      FALLBACKSEARCH: "True"
+      FORCECONVERT: "false"
+      FORMAT: MP3
+      FilePermissions: '666'
+      FolderPermissions: '766'
+      HOME: /root
+      LIST: both
+      LidarrAPIkey: ''
+      LidarrUrl: https://lidarr.rovacsek.com
+      MBRAINZMIRROR: https://musicbrainz.org
+      MBRATELIMIT: '1'
+      MatchDistance: '10'
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      POSTPROCESSTHREADS: '8'
+      SCRIPTINTERVAL: 6h
+      SearchType: both
+      TITLESHORT: AMD
+      replaygain: "true"
+      requirequality: "false"
+    hostname: amd
+    image: randomninjaatk/amd:latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      download:
+        ipv4_address: 192.168.4.142
+    restart: unless-stopped
+    volumes:
+    - /mnt/zfs/containers/amd:/config:rw
+    - /mnt/zfs/downloads:/downloads-amd:rw
+    working_dir: /config
   deluge:
     container_name: deluge
     deploy:
@@ -141,6 +192,7 @@ services:
     - /mnt/zfs/containers/lidarr:/config:rw
     - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
     - /mnt/zfs/downloads:/downloads:rw
+    - /mnt/zfs/downloads:/downloads-amd:rw
     - /mnt/zfs/music:/music:rw
   ombi:
     container_name: ombi
