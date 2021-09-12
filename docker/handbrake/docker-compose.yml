@@ -1,0 +1,26 @@
+networks:
+  lan:
+    external: true
+    name: lan
+services:
+  handbrake:
+    container_name: handbrake
+    image: zocker160/handbrake-nvenc:latest
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 4096M
+    networks:
+      lan:
+        ipv4_address: 192.168.1.224
+    runtime: nvidia
+    volumes:
+      - /mnt/zfs/containers/handbrake:/config
+      - /mnt/zfs/movies:/storage
+      - /mnt/zfs/movies/watch:/watch
+      - /mnt/zfs/downloads/handbrake_conversions:/output
+    ports:
+      - 5800:5800
+    restart: unless-stopped
+version: '3'
