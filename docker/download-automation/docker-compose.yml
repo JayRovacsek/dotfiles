@@ -41,6 +41,8 @@ services:
       MatchDistance: '10'
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       POSTPROCESSTHREADS: '8'
+      PGID: 10005
+      PUID: 990
       SCRIPTINTERVAL: 6h
       SearchType: both
       TITLESHORT: AMD
