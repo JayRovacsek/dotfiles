@@ -1,11 +1,9 @@
-{ config, pkgs, lib, ... }:
 let
-  profile = import ./profile.nix;
-  isLinux = profile.operatingSystem == "linux";
-  isDarwin = !isLinux;
+  pkgs = import <nixpkgs> { };
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  isLinux = !isDarwin;
+  firefox = import ./configs/firefox.nix;
 in {
-  nixpkgs.config.allowUnfree = true;
-
   imports =
     [ ./configs/alacritty.nix ./configs/starship.nix ./configs/lsd.nix ];
 
@@ -22,6 +20,11 @@ in {
       userName = "jayrovacsek";
     };
     home-manager.enable = true;
+    firefox = {
+      enable = isLinux;
+      extensions = firefox.extensions;
+      profiles = firefox.profiles;
+    };
   };
 
   home.stateVersion = "21.11";

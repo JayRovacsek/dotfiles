@@ -1,8 +1,7 @@
 { config, pkgs, lib, ... }:
 let
-  profile = import ./profile.nix;
-  isLinux = profile.operatingSystem == "linux";
-  isDarwin = !isLinux;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  isLinux = !isDarwin;
   meta = import ./packages/meta.nix;
 in {
   imports = [ ./common.nix ] ++ meta.services;
