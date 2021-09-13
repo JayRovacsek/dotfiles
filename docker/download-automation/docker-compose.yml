@@ -24,7 +24,7 @@ services:
       ARL_TOKEN: ''
       AUTOSTART: "true"
       BITRATE: '320'
-      Concurrency: '3'
+      Concurrency: '1'
       DOWNLOADMODE: wanted
       EMBEDDED_COVER_QUALITY: '80'
       FALLBACKSEARCH: "True"
