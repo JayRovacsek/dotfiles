@@ -1,5 +1,7 @@
-{
-  packages = with import <nixpkgs> { config.allowUnfree = true; }; [
+let pkgs = import <nixpkgs> { };
+in {
+  services = [ ];
+  packages = with pkgs; [
     # CLI Utilities
     alacritty
     aws
@@ -27,9 +29,6 @@
     pigz
     wireshark
     unzip
-
-    # Browsers
-    firefox
 
     # Development
     vscode
