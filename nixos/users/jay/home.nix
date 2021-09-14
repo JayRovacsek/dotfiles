@@ -6,8 +6,6 @@ let
 in {
   imports = [ ./common.nix ] ++ meta.services;
 
-  nixpkgs.config.allowUnfree = true;
-
   home = {
     username = if isLinux then "jay" else "jrovacsek";
     homeDirectory = if isLinux then "/home/jay" else "/Users/jrovacsek";

@@ -1,4 +1,0 @@
-{
-  hostname = "device";
-  operatingSystem = "darwin";
-}
