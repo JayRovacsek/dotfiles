@@ -95,13 +95,16 @@
       autoPrune = { enable = true; };
     };
     libvirtd.enable = true;
+    libvirtd.onBoot = "start";
+    libvirtd.onShutdown = "shutdown";
+    libvirtd.qemuPackage = pkgs.qemu_kvm;
   };
 
   users.defaultUserShell = pkgs.zsh;
   users.users.jay = {
     isNormalUser = true;
     useDefaultShell = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "libirt" ];
   };
 
   programs = {
@@ -143,6 +146,8 @@
     wget
     wine
     zsh
+    firefox
+    virt-manager
   ];
 
   environment.gnome.excludePackages = with pkgs; [
