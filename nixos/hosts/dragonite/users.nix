@@ -8,7 +8,8 @@
         hashedPassword =
           "$6$qzMZ0KA6USn$cgJ7wqEDkTyK/q6n1oDnX5EwCAsT84hayVXTT.XmrDB0imMvx0PzTPcyQAVI3Rwp9.Gr1TKKTnQSD2QejWg2l/";
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "video" "networkmanager" "users" ];
+        extraGroups =
+          [ "wheel" "docker" "video" "networkmanager" "users" "libvirtd" ];
         subGidRanges = [{
           startGid = 10000;
           count = 1000;
