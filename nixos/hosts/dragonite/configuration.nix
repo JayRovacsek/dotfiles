@@ -16,6 +16,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "zfs" ];
+    kernelParams = [ "amd_iommu=on" ];
   };
 
   hardware = {
