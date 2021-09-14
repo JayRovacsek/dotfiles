@@ -38,6 +38,7 @@ in {
 
     ## Rust
     cargo
+    clippy
     rust-analyzer
     rustc
     rustfmt
