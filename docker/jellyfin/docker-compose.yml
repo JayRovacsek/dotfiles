@@ -12,7 +12,6 @@ services:
           memory: 12288M
     dns:
     - 192.168.6.2
-    - 192.168.5.1
     entrypoint:
     - /init
     environment:
@@ -48,5 +47,32 @@ services:
     - /mnt/zfs/music:/music:rw
     - /mnt/zfs/tv:/tv:rw
     - /tmp/transcodes:/config/transcodes:rw
+  jellyfin-discord-bot:
+    container_name: jellyfin-discord-bot
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 2048M
+    dns:
+    - 192.168.6.2
+    environment:
+      DISCORD_PREFIX: "?"
+      DISCORD_TOKEN: ""
+      JELLYFIN_SERVER_ADDRESS: "https://jellyfin.rovacsek.com"
+      JELLYFIN_USERNAME: ""
+      JELLYFIN_PASSWORD: ""
+      JELLYFIN_APP_NAME: "Jellyfin Discord Music Bot"
+      MESSAGE_UPDATE_INTERVAL: "2000"
+    hostname: jellyfin-discord-bot
+    image: kgt1/jellyfin-discord-music-bot
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      reverse_proxy:
+        ipv4_address: 192.168.5.5
+    restart: unless-stopped
+  
 version: '3'
-
