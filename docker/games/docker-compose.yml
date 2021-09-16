@@ -1,0 +1,78 @@
+networks:
+  games:
+    driver: macvlan
+    driver_opts:
+      parent: enp9s0.17
+    ipam:
+      config:
+        - gateway: 192.168.17.1
+          subnet: 192.168.17.0/24
+      driver: default
+services:
+  minecraft:
+    deploy:
+      resources:
+        limits:
+          cpus: 8.0
+          memory: 8192M
+    dns:
+     - 192.168.6.2
+    image: itzg/minecraft-server
+    ports:
+      - "25565:25565"
+    volumes:
+      - "/mnt/zfs/games/minecraft:/data"
+    environment:
+      EULA: "TRUE"
+      ENABLE_AUTOPAUSE: "TRUE"
+      OVERRIDE_SERVER_PROPERTIES: "TRUE"
+      MAX_TICK_TIME: "-1"
+      UID: 989
+      GID: 10017
+    restart: unless-stopped
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      games:
+        ipv4_address: 192.168.17.2
+
+  valheim: 
+    deploy:
+      resources:
+        limits:
+          cpus: 8.0
+          memory: 8192M
+    dns:
+     - 192.168.6.2
+    image: lloesche/valheim-server
+    cap_add:
+      - sys_nice
+    volumes: 
+      - /mnt/zfs/games/valheim-server/config:/config
+      - /mnt/zfs/games/valheim-server/data:/opt/valheim
+    ports: 
+      - "2456-2457:2456-2457/udp"
+      - "9001:9001/tcp"
+    environment:
+      SERVER_NAME: ""
+      SERVER_PASS: ""
+      SERVER_PUBLIC: false
+      UPDATE_CRON: "*/15 * * * *"
+      UPDATE_IF_IDLE: true
+      RESTART_CRON: "0 5 * * *"
+      RESTART_IF_IDLE: true
+      TZ: "Australia/NSW"
+      BACKUPS: true
+      BACKUPS_CRON: "0 * * * *"
+      BACKUPS_MAX_AGE: 3
+      PUID: 975
+      PGID: 10017
+
+    restart: always
+    stop_grace_period: 2m
+    networks:
+      games:
+        ipv4_address: 192.168.17.2
+
+version: "3"
