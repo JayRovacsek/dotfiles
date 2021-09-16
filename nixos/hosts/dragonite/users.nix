@@ -110,6 +110,11 @@
       gid = 10016;
       members = [ "speedtest" ];
     };
+
+    games = {
+      gid = 10017;
+      members = [ "minecraft" "valheim" ];
+    };
   };
 
   users.extraUsers = let
@@ -210,6 +215,11 @@
     swag = {
       inherit isSystemUser createHome description;
       uid = 976;
+    };
+
+    valheim = {
+      inherit isSystemUser createHome description;
+      uid = 975;
     };
   };
 }
