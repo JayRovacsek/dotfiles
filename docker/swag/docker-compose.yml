@@ -26,7 +26,7 @@ services:
       PUID: '976'
       S6_BEHAVIOUR_IF_STAGE2_FAILS: '2'
       STAGING: "false"
-      SUBDOMAINS: minecraft,server,pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,jackett,duplicati,pihole,portainer,homeassistant
+      SUBDOMAINS: minecraft,server,pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,jackett,duplicati,pihole,portainer,homeassistant,valheim
       TERM: xterm
       UMASK: '002'
       URL: rovacsek.com
