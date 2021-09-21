@@ -73,26 +73,12 @@ services:
       VALHEIM_PLUS: "true"
       VPCFG_ValheimPlus_serverBrowserAdvertisement: "false"
       VPCFG_Beehive_enabled: "true"
-      VPCFG_Beehive_autoDeposit: "true"
       VPCFG_Beehive_showDuration: "true"
       VPCFG_Fermenter_enabled: "true"
-      VPCFG_Fermenter_autoDeposit: "true"
       VPCFG_Fermenter_showDuration: "true"
-      VPCFG_Smelter_enabled: "true"
-      VPCFG_Smelter_maximumOre: 50
-      VPCFG_Smelter_maximumCoal: 100
-      VPCFG_Smelter_autoDeposit: "true"
-      VPCFG_Furnace_enabled: "true"
-      VPCFG_Furnace_maximumOre: 50
-      VPCFG_Furnace_maximumCoal: 100
-      VPCFG_Furnace_autoDeposit: "true"
       VPCFG_Hud_enabled: "true"
       VPCFG_Hud_showRequiredItems: "true"
-      VPCFG_Kiln_enabled: "true"
-      VPCFG_Kiln_maximumWood: 100
-      VPCFG_Kiln_autoDeposit: "true"
       VPCFG_Map_enabled: "true"
-      VPCFG_Map_shareMapProgression: "true"
       VPCFG_Map_preventPlayerFromTurningOffPublicPosition: "true"
       VPCFG_Player_enabled: "true"
       VPCFG_Player_autoRepair: "true"
@@ -101,12 +87,6 @@ services:
       VPCFG_Server_dataRate: 2048
       VPCFG_Server_maxPlayers: 25
       VPCFG_Server_serverSyncsConfig: "true"
-      VPCFG_Windmill_enabled: "true"
-      VPCFG_Windmill_maximumBarley: 200
-      VPCFG_Windmill_autoDeposit: "true"
-      VPCFG_SpinningWheel_enabled: "true"
-      VPCFG_SpinningWheel_maximumFlax: 200
-      VPCFG_SpinningWheel_autoDeposit: "true"
       VPCFG_GameClock_enabled: "true"
       VPCFG_GameClock_useAMPM: "true"
       VPCFG_GameClock_textFontSize: 20
