@@ -42,6 +42,7 @@ in {
       # Games
       lutris
       runelite
+      minecraft
 
       # Game Requirements
       ## Origin: https://github.com/lutris/docs/blob/master/Origin.md
