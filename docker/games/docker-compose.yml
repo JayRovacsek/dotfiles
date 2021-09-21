@@ -77,6 +77,7 @@ services:
       VPCFG_Beehive_showDuration: "true"
       VPCFG_Fermenter_enabled: "true"
       VPCFG_Fermenter_autoDeposit: "true"
+      VPCFG_Fermenter_showDuration: "true"
       VPCFG_Smelter_enabled: "true"
       VPCFG_Smelter_maximumOre: 50
       VPCFG_Smelter_maximumCoal: 100
