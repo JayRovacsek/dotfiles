@@ -28,22 +28,8 @@
   networking = {
     hostName = "alakazam";
     useDHCP = false;
-    firewall.allowedTCPPorts = [ 22 ];
-    nameservers = [ "192.168.6.2" ];
-    defaultGateway = "192.168.1.1";
-    vlans = {
-      vlan3 = {
-        id = 3;
-        interface = "enp0s31f6";
-      };
-    };
-    interfaces = {
-      enp0s31f6.useDHCP = true;
-      vlan3.ipv4.addresses = [{
-        address = "192.168.3.250";
-        prefixLength = 24;
-      }];
-    };
+    firewall.allowedTCPPorts = [ 22 27036 27037 ];
+    firewall.allowedUDPPorts = [ 27031 27036 ];
   };
 
   services.gvfs.enable = true;
@@ -101,10 +87,17 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-  users.users.jay = {
-    isNormalUser = true;
-    useDefaultShell = true;
-    extraGroups = [ "wheel" "docker" "libirt" ];
+  users.users = {
+    jay = {
+      isNormalUser = true;
+      useDefaultShell = true;
+      extraGroups = [ "wheel" "docker" "libirt" ];
+    };
+    sarah = {
+      isNormalUser = true;
+      useDefaultShell = true;
+      extraGroups = [ "wheel" ];
+    };
   };
 
   programs = {
