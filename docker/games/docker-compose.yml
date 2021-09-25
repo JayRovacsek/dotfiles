@@ -76,8 +76,16 @@ services:
       VPCFG_Beehive_showDuration: "true"
       VPCFG_Fermenter_enabled: "true"
       VPCFG_Fermenter_showDuration: "true"
+      VPCFG_Smelter_enabled: "true"
+      VPCFG_Smelter_maximumOre: 20
+      VPCFG_Smelter_maximumCoal: 63
+      VPCFG_Furnace_enabled: "true"
+      VPCFG_Furnace_maximumOre: 20
+      VPCFG_Furnace_maximumCoal: 63
       VPCFG_Hud_enabled: "true"
       VPCFG_Hud_showRequiredItems: "true"
+      VPCFG_Kiln_enabled: "true"
+      VPCFG_Kiln_maximumWood: 40
       VPCFG_Map_enabled: "true"
       VPCFG_Map_preventPlayerFromTurningOffPublicPosition: "true"
       VPCFG_Player_enabled: "true"
@@ -87,6 +95,10 @@ services:
       VPCFG_Server_dataRate: 2048
       VPCFG_Server_maxPlayers: 25
       VPCFG_Server_serverSyncsConfig: "true"
+      VPCFG_Windmill_enabled: "true"
+      VPCFG_Windmill_maximumBarley: 100
+      VPCFG_SpinningWheel_enabled: "true"
+      VPCFG_SpinningWheel_maximumFlax: 100
       VPCFG_GameClock_enabled: "true"
       VPCFG_GameClock_useAMPM: "true"
       VPCFG_GameClock_textFontSize: 20
