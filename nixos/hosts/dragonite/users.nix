@@ -38,7 +38,7 @@
 
     media = {
       gid = 10002;
-      members = [ "jellyfin" "sonarr" "radarr" "lidarr" ];
+      members = [ "jellyfin" "sonarr" "radarr" "lidarr" "tdarr" ];
     };
 
     nextcloud = {
@@ -220,6 +220,11 @@
     valheim = {
       inherit isSystemUser createHome description;
       uid = 975;
+    };
+
+    tdarr = {
+      inherit isSystemUser createHome description;
+      uid = 974;
     };
   };
 }
