@@ -62,6 +62,7 @@ in {
       discord
       signal-desktop
       thunderbird
+      teamviewer
     ]
   else
     [ ];

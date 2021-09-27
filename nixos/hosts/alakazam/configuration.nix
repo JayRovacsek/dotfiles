@@ -55,7 +55,6 @@
       driSupport32Bit = true;
     };
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
       modesetting.enable = true;
     };
   };
@@ -87,7 +86,7 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-  users.users = {
+  users.users = { 
     jay = {
       isNormalUser = true;
       useDefaultShell = true;
@@ -125,7 +124,7 @@
     exfat
     gnupg
     libfido2
-    linuxPackages.nvidia_x11_beta
+    linuxPackages.nvidia_x11
     nerdfonts
     paperkey
     pinentry-curses
@@ -139,6 +138,7 @@
     wget
     wine
     zsh
+    oh-my-zsh
     firefox
     virt-manager
   ];
@@ -185,6 +185,6 @@
   system.autoUpgrade.dates = "04:00";
   system.autoUpgrade.allowReboot = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 }
 
