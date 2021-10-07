@@ -8,6 +8,7 @@ networks:
       - gateway: 192.168.4.1
         subnet: 192.168.4.0/24
       driver: default
+
 services:
   amd:
     container_name: amd
@@ -62,6 +63,7 @@ services:
     - /mnt/zfs/containers/amd:/config:rw
     - /mnt/zfs/downloads:/downloads-amd:rw
     working_dir: /config
+
   deluge:
     container_name: deluge
     deploy:
@@ -108,6 +110,7 @@ services:
     volumes:
     - /mnt/zfs/containers/deluge:/config:rw
     - /mnt/zfs/downloads:/downloads:rw
+
   jackett:
     container_name: jackett
     deploy:
@@ -148,6 +151,7 @@ services:
     volumes:
     - /mnt/zfs/containers/jackett:/config:rw
     - /mnt/zfs/containers/jackett/blackhole:/downloads:rw
+
   lidarr:
     container_name: lidarr
     deploy:
@@ -196,6 +200,7 @@ services:
     - /mnt/zfs/downloads:/downloads:rw
     - /mnt/zfs/downloads:/downloads-amd:rw
     - /mnt/zfs/music:/music:rw
+
   ombi:
     container_name: ombi
     deploy:
@@ -213,8 +218,8 @@ services:
       LANG: en_US.UTF-8
       LANGUAGE: en_US.UTF-8
       PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      PGID: '100'
-      PUID: '1000'
+      PGID: '65534'
+      PUID: '973'
       TERM: xterm
       UMASK: '022'
     hostname: ombi
@@ -233,6 +238,7 @@ services:
     restart: unless-stopped
     volumes:
     - /mnt/zfs/containers/ombi:/config:rw
+
   radarr:
     container_name: radarr
     deploy:
@@ -280,6 +286,7 @@ services:
     - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
     - /mnt/zfs/downloads:/downloads:rw
     - /mnt/zfs/movies:/movies:rw
+
   sonarr:
     container_name: sonarr
     deploy:
@@ -324,5 +331,77 @@ services:
     - /mnt/zfs/containers/sonarr:/config:rw
     - /mnt/zfs/downloads:/downloads:rw
     - /mnt/zfs/tv:/tv:rw
+
+  tdarr:
+    container_name: tdarr
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 2048M
+    hostname: tdarr-controller
+    dns:
+    - 192.168.6.2
+    - 192.168.4.1
+    image: haveagitgat/tdarr:latest
+    restart: unless-stopped
+    networks:
+      download:
+        ipv4_address: 192.168.4.135
+    ports:
+      - 8265:8265
+      - 8266:8266
+    environment:
+      - TZ=Australia/NSW
+      - PUID=974
+      - PGID=10002
+      - UMASK_SET=002
+      - serverIP=tdarr-controller.localdomain
+      - serverPort=8266
+      - webUIPort=8265
+    volumes:
+      - /mnt/zfs/containers/tdarr/server:/app/server
+      - /mnt/zfs/containers/tdarr/configs:/app/configs
+      - /mnt/zfs/containers/tdarr/logs:/app/logs
+      - /mnt/zfs/movies:/movies
+      - /mnt/zfs/tv:/tv
+      - /mnt/zfs/music:/music
+
+  tdarr-node:
+    container_name: tdarr-node-01
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 4096M
+    dns:
+    - 192.168.6.2
+    - 192.168.4.1
+    hostname: tdarr-node-01
+    image: haveagitgat/tdarr_node:latest
+    ports:
+      - 8267:8267
+    restart: unless-stopped
+    networks:
+      download:
+        ipv4_address: 192.168.4.136
+    runtime: nvidia
+    environment:
+      - TZ=Australia/NSW
+      - PUID=974
+      - PGID=10002
+      - UMASK_SET=002
+      - nodeID=node-01
+      - nodeIP=tdarr-node-01.localdomain
+      - nodePort=8267
+      - serverIP=tdarr-controller.localdomain
+      - serverPort=8266
+    volumes:
+      - /mnt/zfs/containers/tdarr/configs:/app/configs
+      - /mnt/zfs/containers/tdarr/logs:/app/logs
+      - /mnt/zfs/movies:/movies
+      - /mnt/zfs/tv:/tv
+      - /mnt/zfs/music:/music
+
 version: '3'
 

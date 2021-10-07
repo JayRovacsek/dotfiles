@@ -1,0 +1,43 @@
+networks:
+  lan:
+    external: true
+    name: lan
+
+services:
+  unifi-controller:
+    container_name: unifi-controller
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 2048M
+    dns:
+    - 192.168.6.2
+    environment:
+      - PUID=977
+      - PGID=10010
+      - UMASK=022
+      - MEM_LIMIT=1024M
+      - MEM_STARTUP=1024M
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LANGUAGE=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - TERM=xterm
+    hostname: unifi-controller
+    image: ghcr.io/linuxserver/unifi-controller:amd64-latest
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      lan:
+        ipv4_address: 192.168.1.225
+    ports:
+      - 10001:10001/udp
+      - 3478:3478/udp
+      - 8000:8000/tcp
+      - 8443:8443/tcp
+    restart: unless-stopped
+    volumes:
+      - /mnt/zfs/containers/unifi:/config
+version: "3"
