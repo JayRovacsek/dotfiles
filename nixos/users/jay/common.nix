@@ -47,24 +47,10 @@ in {
             export EDITOR='vim'
         fi
 
-        export WASMTIME_HOME="~/.wasmtime"
-
-        export PATH="$WASMTIME_HOME/bin:$PATH"
-        export PATH="/usr/bin:$PATH"
         export PATH=$PATH:$(go env GOPATH)/bin
         export GOPATH=$(go env GOPATH)
         eval "$(starship init zsh)"
       '';
-
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "git"
-          "zsh-autosuggestions"
-          "zsh-syntax-highlighting"
-          "zsh-completions"
-        ];
-      };
 
       shellAliases = {
         nano = "vim";

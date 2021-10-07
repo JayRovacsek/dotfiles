@@ -54,9 +54,7 @@
       enable = true;
       driSupport32Bit = true;
     };
-    nvidia = {
-      modesetting.enable = true;
-    };
+    nvidia = { modesetting.enable = true; };
   };
 
   services.xserver = {
@@ -86,7 +84,7 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-  users.users = { 
+  users.users = {
     jay = {
       isNormalUser = true;
       useDefaultShell = true;
@@ -112,7 +110,13 @@
       syntaxHighlighting.enable = true;
       ohMyZsh = {
         enable = true;
-        plugins = [ "git" "sudo" ];
+        plugins = [
+          "git"
+          "sudo"
+          "zsh-autosuggestions"
+          "zsh-syntax-highlighting"
+          "zsh-completions"
+        ];
         theme = "risto";
       };
     };
@@ -141,6 +145,16 @@
     oh-my-zsh
     firefox
     virt-manager
+    # Gnome
+    gjs
+    gnome.gnome-tweaks
+    gnome.nautilus
+
+    ## Gnome Extensions
+    gnomeExtensions.application-volume-mixer
+    gnomeExtensions.caffeine
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.screenshot-tool
   ];
 
   environment.gnome.excludePackages = with pkgs; [

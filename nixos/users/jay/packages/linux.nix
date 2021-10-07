@@ -8,6 +8,7 @@ in {
     with pkgs; [
       # CLI Utilities
       killall
+      exiftool
 
       # Productivity
       nextcloud-client
@@ -16,17 +17,6 @@ in {
       # Browsers
       tor-browser-bundle-bin
       ungoogled-chromium
-
-      # Gnome
-      gjs
-      gnome.gnome-tweaks
-      gnome.nautilus
-
-      ## Gnome Extensions
-      gnomeExtensions.application-volume-mixer
-      gnomeExtensions.caffeine
-      gnomeExtensions.dash-to-panel
-      gnomeExtensions.screenshot-tool
 
       ## X Utils
       libpng
