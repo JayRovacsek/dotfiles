@@ -22,9 +22,8 @@ services:
           memory: 2048M
     dns:
     - 127.0.0.1
-    - 1.1.1.1
     environment:
-      PIHOLE_DNS_: 8.8.8.8;8.8.4.4;9.9.9.9;1.1.1.1;1.0.0.1
+      PIHOLE_DNS_: 192.168.6.3#8053
       DNSSEC: "true"
       DNS_BOGUS_PRIV: "true"
       DNS_FQDN_REQUIRED: "true"
@@ -63,5 +62,25 @@ services:
     - /mnt/zfs/containers/pihole/pihole:/etc/pihole:rw
     - /mnt/zfs/containers/pihole/dnsmasq.d:/etc/dnsmasq.d:rw
     - /mnt/zfs/containers/pihole/config:/config:rw
+
+  stubby:
+    container_name: stubby
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 1024M
+    networks:
+      dns:
+        ipv4_address: 192.168.6.3
+    hostname: stubby
+    image: "mvance/stubby:latest"
+    ports:
+    - protocol: udp
+      published: 8053
+      target: 8053
+    restart: unless-stopped
+    volumes:
+    - /mnt/zfs/containers/stubby:/opt/stubby/etc/stubby:rw
 
 version: '3'

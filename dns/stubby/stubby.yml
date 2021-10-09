@@ -1,0 +1,30 @@
+# For more information see
+# https://dnsprivacy.org/wiki/display/DP/Configuring+Stubby
+
+resolution_type: GETDNS_RESOLUTION_STUB
+dns_transport_list:
+  - GETDNS_TRANSPORT_TLS
+tls_authentication: GETDNS_AUTHENTICATION_REQUIRED
+tls_query_padding_blocksize: 128
+edns_client_subnet_private: 1
+round_robin_upstreams: 1
+idle_timeout: 10000
+listen_addresses:
+  - 0.0.0.0@8053
+  - 0:0:0:0:0:0:0:0@8053
+
+upstream_recursive_servers:
+  - address_data: 78.46.244.143
+    tls_auth_name: "dot-de.blahdns.com"
+  - address_data: 45.91.92.121
+    tls_auth_name: "dot-ch.blahdns.com"
+  - address_data: 139.162.112.47
+    tls_auth_name: "dot-jp.blahdns.com"
+  - address_data: 95.216.212.177
+    tls_auth_name: "dot-fi.blahdns.com"
+  - address_data: 192.53.175.149
+    tls_auth_name: "dot-sg.blahdns.com"
+  - address_data: 198.50.135.212
+    tls_auth_name: "dot.caramelfox.net"
+  - address_data: 94.16.114.254
+    tls_auth_name: "jabber-germany.de"
