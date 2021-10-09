@@ -354,13 +354,13 @@ services:
       - 8265:8265
       - 8266:8266
     environment:
-      - TZ=Australia/NSW
-      - PUID=974
-      - PGID=10002
-      - UMASK_SET=002
-      - serverIP=192.168.4.135
-      - serverPort=8266
-      - webUIPort=8265
+      TZ: Australia/NSW
+      PUID: 974
+      PGID: 10002
+      UMASK_SET: 002
+      serverIP: 192.168.4.135
+      serverPort: 8266
+      webUIPort: 8265
     volumes:
       - /mnt/zfs/containers/tdarr/server:/app/server:rw
       - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
@@ -368,7 +368,8 @@ services:
       - /mnt/zfs/movies:/movies:ro
       - /mnt/zfs/tv:/tv:ro
       - /mnt/zfs/music:/music:ro
-      - /transcode:/transcode:rw
+      - /transcode:/temp:rw
+      - /mnt/zfs/test:/test:rw
 
   tdarr-node:
     container_name: tdarr-node-01
@@ -390,22 +391,24 @@ services:
         ipv4_address: 192.168.4.136
     runtime: nvidia
     environment:
-      - TZ=Australia/NSW
-      - PUID=974
-      - PGID=10002
-      - UMASK_SET=002
-      - nodeID=node-01
-      - nodeIP=192.168.4.136
-      - nodePort=8267
-      - serverIP=192.168.4.135
-      - serverPort=8266
+      TZ: Australia/NSW
+      PUID: 974
+      PGID: 10002
+      UMASK_SET: 002
+      nodeID: node-01
+      nodeIP: 192.168.4.136
+      nodePort: 8267
+      serverIP: 192.168.4.135
+      serverPort: 8266
+      NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: all
     volumes:
       - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
       - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
       - /mnt/zfs/movies:/movies:rw
       - /mnt/zfs/tv:/tv:rw
       - /mnt/zfs/music:/music:rw
-      - /transcode:/transcode:rw
+      - /transcode:/temp:rw
+      - /mnt/zfs/test:/test:rw
 
 version: '3'
-
