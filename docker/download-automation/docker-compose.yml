@@ -18,7 +18,9 @@ services:
           cpus: 2.0
           memory: 1024M
     dns:
-    - 192.168.6.2
+    - 192.195.100.3
+    - 82.146.26.2
+    - 37.235.1.174
     entrypoint:
     - /init
     environment:
@@ -134,7 +136,7 @@ services:
       UMASK: '022'
       XDG_CONFIG_HOME: /config
       XDG_DATA_HOME: /config
-    hostname: jackett
+    hostname: jackett  
     image: ghcr.io/linuxserver/jackett:amd64-latest
     ipc: private
     logging:
@@ -222,7 +224,7 @@ services:
       PUID: '973'
       TERM: xterm
       UMASK: '022'
-    hostname: ombi
+    hostname: ombi  
     image: ghcr.io/linuxserver/ombi:amd64-development
     ipc: private
     logging:
@@ -356,16 +358,17 @@ services:
       - PUID=974
       - PGID=10002
       - UMASK_SET=002
-      - serverIP=tdarr-controller.localdomain
+      - serverIP=192.168.4.135
       - serverPort=8266
       - webUIPort=8265
     volumes:
-      - /mnt/zfs/containers/tdarr/server:/app/server
-      - /mnt/zfs/containers/tdarr/configs:/app/configs
-      - /mnt/zfs/containers/tdarr/logs:/app/logs
-      - /mnt/zfs/movies:/movies
-      - /mnt/zfs/tv:/tv
-      - /mnt/zfs/music:/music
+      - /mnt/zfs/containers/tdarr/server:/app/server:rw
+      - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
+      - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
+      - /mnt/zfs/movies:/movies:ro
+      - /mnt/zfs/tv:/tv:ro
+      - /mnt/zfs/music:/music:ro
+      - /transcode:/transcode:rw
 
   tdarr-node:
     container_name: tdarr-node-01
@@ -392,16 +395,17 @@ services:
       - PGID=10002
       - UMASK_SET=002
       - nodeID=node-01
-      - nodeIP=tdarr-node-01.localdomain
+      - nodeIP=192.168.4.136
       - nodePort=8267
-      - serverIP=tdarr-controller.localdomain
+      - serverIP=192.168.4.135
       - serverPort=8266
     volumes:
-      - /mnt/zfs/containers/tdarr/configs:/app/configs
-      - /mnt/zfs/containers/tdarr/logs:/app/logs
-      - /mnt/zfs/movies:/movies
-      - /mnt/zfs/tv:/tv
-      - /mnt/zfs/music:/music
+      - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
+      - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/music:/music:rw
+      - /transcode:/transcode:rw
 
 version: '3'
 
