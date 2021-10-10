@@ -23,8 +23,10 @@ services:
     volumes:
       - /mnt/zfs/containers/duplicati:/config
       - /mnt/zfs/backup:/backups
+      - /backup:/backup
       - /mnt/zfs:/source
     ports:
       - 8200:8200
     restart: unless-stopped
+    
 version: '3'
