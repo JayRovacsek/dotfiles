@@ -14,17 +14,15 @@ listen_addresses:
   - 0:0:0:0:0:0:0:0@8053
 
 upstream_recursive_servers:
-  - address_data: 78.46.244.143
-    tls_auth_name: "dot-de.blahdns.com"
-  - address_data: 45.91.92.121
-    tls_auth_name: "dot-ch.blahdns.com"
-  - address_data: 139.162.112.47
-    tls_auth_name: "dot-jp.blahdns.com"
-  - address_data: 95.216.212.177
-    tls_auth_name: "dot-fi.blahdns.com"
-  - address_data: 192.53.175.149
-    tls_auth_name: "dot-sg.blahdns.com"
-  - address_data: 198.50.135.212
-    tls_auth_name: "dot.caramelfox.net"
+  - address_data: 116.202.176.26
+    tls_auth_name: "dot.libredns.gr"
+  - address_data: 103.73.64.132
+    tls_auth_name: "dot.au.ahadns.net"
+  - address_data: 185.175.56.133
+    tls_auth_name: "dot.no.ahadns.net"
+  - address_data: 5.2.75.75
+    tls_auth_name: "dot.nl.ahadns.net"
+  - address_data: 185.213.26.187
+    tls_auth_name: "dot.ny.ahadns.net"
   - address_data: 94.16.114.254
     tls_auth_name: "jabber-germany.de"
