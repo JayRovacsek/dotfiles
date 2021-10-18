@@ -111,4 +111,29 @@ services:
       games:
         ipv4_address: 192.168.17.3
 
+  terraria:
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 8192M
+    dns:
+     - 192.168.6.2
+    image: beardedio/terraria:vanilla-latest
+    ports:
+      - "7777:7777"
+    volumes:
+      - "/mnt/zfs/games/terraria:/config"
+    environment:
+      world: "Byherson.wld"
+    restart: unless-stopped
+    logging:
+      driver: journald
+      options: {}
+    networks:
+      games:
+        ipv4_address: 192.168.17.4
+    tty: true
+    stdin_open: true
+    
 version: "3"
