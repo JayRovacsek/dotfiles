@@ -53,7 +53,6 @@ in {
       '';
 
       shellAliases = {
-        docker = "podman";
         nano = "vim";
         l = "lsd -al";
         ls = "lsd";
