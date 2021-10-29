@@ -62,7 +62,8 @@ in {
     go-tools
     gopls
 
-    ## Docker
+    ## Docker / Podman
+    podman
     docker-compose
 
     ## Tex

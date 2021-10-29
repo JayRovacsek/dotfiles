@@ -1,6 +1,10 @@
-{
+let
+  pkgs = import <nixpkgs> { };
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  isLinux = !isDarwin;
+in {
   services.nextcloud-client = {
-    enable = true;
+    enable = isLinux;
     startInBackground = true;
   };
 }
