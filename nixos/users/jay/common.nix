@@ -52,6 +52,18 @@ in {
         eval "$(starship init zsh)"
       '';
 
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git"
+          "sudo"
+          "zsh-autosuggestions"
+          "zsh-syntax-highlighting"
+          "zsh-completions"
+        ];
+        theme = "risto";
+      };
+
       shellAliases = {
         nano = "vim";
         l = "lsd -al";

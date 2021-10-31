@@ -62,8 +62,8 @@ in {
     go-tools
     gopls
 
-    ## Docker / Podman
-    podman
+    ## Virtualisation
+    docker
     docker-compose
 
     ## Tex
@@ -73,8 +73,5 @@ in {
     hunspell
     hunspellDicts.en-au
     pkg-config
-
-    # Communication
-    slack
   ];
 }

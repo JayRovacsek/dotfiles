@@ -53,6 +53,7 @@ in {
       signal-desktop
       thunderbird
       teamviewer
+      slack
     ]
   else
     [ ];
