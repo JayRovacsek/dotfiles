@@ -12,6 +12,7 @@ in {
 
       # Productivity
       nextcloud-client
+      gimp
       yubikey-manager-qt
 
       # Browsers

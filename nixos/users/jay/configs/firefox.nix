@@ -17,6 +17,61 @@ in {
   ];
   profiles.options = {
     name = "jay";
+    bookmarks = {
+      "Duck Duck Go" = {
+        keyword = "d";
+        url = "https://duckduckgo.com/?q=%s";
+      };
+      "Google Search" = {
+        keyword = "g";
+        url = "https://www.google.com/search?q=%s";
+      };
+      "Google AU Search" = {
+        keyword = "ga";
+        url = "https://www.google.com.au/search?q=%a";
+      };
+      "Youtube" = {
+        keyword = "y";
+        url = "https://www.youtube.com/results?search_query=%s";
+      };
+      "Github Search" = {
+        keyword = "gh";
+        url = "https://github.com/search?q=%s";
+      };
+      "Dockerhub Search" = {
+        keyword = "dh";
+        url = "https://hub.docker.com/search?q=%s";
+      };
+      "Nix Pkg Search" = {
+        keyword = "np";
+        url =
+          "https://search.nixos.org/packages?channel=21.05&from=0&size=50&sort=relevance&query=%s";
+      };
+      "Nix Options Search" = {
+        keyword = "no";
+        url =
+          "https://search.nixos.org/options?channel=21.05&from=0&size=50&sort=relevance&query=%s";
+      };
+      "nib Jira Search" = {
+        keyword = "j";
+        url =
+          "https://jira.nib.com.au/issues/?jql=text~%22%s%22%20or%20description%20~%20%22%s%22%20or%20summary%20~%20%22%s%22";
+      };
+      "nib Confluence Search" = {
+        keyword = "c";
+        url =
+          "https://confluence.nib.com.au/dosearchsite.action?cql=siteSearch+~+%22%s%22&queryString=%s";
+      };
+      "nib Github Search" = {
+        keyword = "ngh";
+        url = "https://github.com/nib-group?q=%s&type=&language=";
+      };
+      OSRSWiki = {
+        keyword = "osrs";
+        url =
+          "https://oldschool.runescape.wiki/?search=%s&title=Special%3ASearch&fulltext=Search";
+      };
+    };
     settings = {
       "browser.aboutConfig.showWarning" = false;
       "browser.cache.disk.capacity" = 1048576;
