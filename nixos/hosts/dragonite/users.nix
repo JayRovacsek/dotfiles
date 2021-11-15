@@ -115,6 +115,11 @@
       gid = 10017;
       members = [ "minecraft" "valheim" ];
     };
+
+    duin = {
+      gid = 10018;
+      members = [ "duin" ];
+    };
   };
 
   users.extraUsers = let
@@ -225,6 +230,16 @@
     tdarr = {
       inherit isSystemUser createHome description;
       uid = 974;
+    };
+
+    ombi = {
+      inherit isSystemUser createHome description;
+      uid = 973;
+    };
+
+    duin = {
+      inherit isSystemUser createHome description;
+      uid = 972;
     };
   };
 }
