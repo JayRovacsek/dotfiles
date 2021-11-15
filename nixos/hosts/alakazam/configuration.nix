@@ -139,7 +139,6 @@
     vulkan-headers
     vulkan-tools
     wget
-    wget
     wine
     zsh
     oh-my-zsh
