@@ -1,0 +1,38 @@
+networks:
+  lan:
+    external: true
+    name: lan
+
+services:
+  diun:
+    image: crazymax/diun:latest
+    container_name: diun
+    hostname: diun
+    command: serve
+    dns:
+    - 192.168.6.2
+    networks:
+      lan:
+        ipv4_address: 192.168.1.224
+    volumes:
+      - "/mnt/zfs/containers/duin:/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      TZ: Australia/NSW
+      LOG_LEVEL: info
+      LOG_JSON: "false"
+      DIUN_WATCH_WORKERS: 20
+      DIUN_WATCH_SCHEDULE: "30 */6 * * *"
+      DIUN_PROVIDERS_DOCKER: "true"
+      DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT: "true"
+      DIUN_NOTIF_MAIL_HOST: ""
+      DIUN_NOTIF_MAIL_PORT: 443
+      DIUN_NOTIF_MAIL_SSL: "true"
+      DIUN_NOTIF_MAIL_INSECURESKIPVERIFY: "false"
+      DIUN_NOTIF_MAIL_USERNAME: ""
+      DIUN_NOTIF_MAIL_PASSWORD: ""
+      DIUN_NOTIF_MAIL_FROM: ""
+      DIUN_NOTIF_MAIL_TO: ""
+    restart: unless-stopped
+
+version: "3"
