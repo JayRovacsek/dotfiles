@@ -2,55 +2,56 @@ let pkgs = import <nixpkgs> { config.allowUnfree = true; };
 in {
 
   environment.systemPackages = with pkgs; [
-    vim
-    git
-    curl
-    wget
-    firefox
-    chromium
-    dnsutils
-    htop
-    zsh-autosuggestions
-    nix-zsh-completions
-    jq
-    oh-my-zsh
     alacritty
-    iputils
-    cherrytree
-    elfutils
     binutils
+    cherrytree
+    chromium
+    curl
+    dnsutils
+    elfutils
+    firefox
+    git
+    htop
+    iputils
+    jq
     macchanger
+    nix-zsh-completions
+    oh-my-zsh
+    vim
+    wget
+    zsh-autosuggestions
 
     # hecker toolz
-    metasploit
     arping
+    binwalk
     burpsuite
     clang
-    binwalk
     crunch
-    hashdeep
+    dirb
     fierce
+    gobuster
     hashcat
+    hashdeep
     hcxtools
     john
-    medusa
-    dirb
     masscan
-    nmap
-    nmap-graphical
+    medusa
+    metasploit
     mitmproxy
     netsniff-ng
-    tcpflow
-    xorex
+    nmap
+    nmap-graphical
     pwnat
-    sqlmap
     sqlite
     sqlitebrowser
+    sqlmap
     sslscan
+    swaks
+    tcpflow
     wafw00f
     wfuzz
-    swaks
     wireshark
+    xorex
     zap
   ];
 }
