@@ -9,14 +9,21 @@ in {
       # CLI Utilities
       killall
       exiftool
+      lm_sensors
+      hddtemp
 
       # Productivity
       nextcloud-client
       gimp
+      libreoffice-fresh
       yubikey-manager-qt
+      smartmontools
+      gnomeExtensions.sensory-perception
+      gnomeExtensions.caffeine
+      gnomeExtensions.screenshot-tool
+      gnomeExtensions.dash-to-panel
 
       # Browsers
-      tor-browser-bundle-bin
       ungoogled-chromium
 
       ## X Utils
@@ -55,6 +62,7 @@ in {
       thunderbird
       teamviewer
       slack
+      zoom-us
     ]
   else
     [ ];
