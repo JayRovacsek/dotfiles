@@ -53,7 +53,7 @@
 
     download = {
       gid = 10005;
-      members = [ "download" "sonarr" "radarr" "lidarr" ];
+      members = [ "download" "sonarr" "radarr" "lidarr" "prowlarr" ];
     };
 
     authelia = {
@@ -241,5 +241,11 @@
       inherit isSystemUser createHome description;
       uid = 972;
     };
+
+    prowlarr = {
+      inherit isSystemUser createHome description;
+      uid = 971;
+    };
+
   };
 }
