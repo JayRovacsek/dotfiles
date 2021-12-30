@@ -45,12 +45,12 @@ in {
       "Nix Pkg Search" = {
         keyword = "np";
         url =
-          "https://search.nixos.org/packages?channel=21.05&from=0&size=50&sort=relevance&query=%s";
+          "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&query=%s";
       };
       "Nix Options Search" = {
         keyword = "no";
         url =
-          "https://search.nixos.org/options?channel=21.05&from=0&size=50&sort=relevance&query=%s";
+          "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&query=%s";
       };
       "nib Jira Search" = {
         keyword = "j";
