@@ -2,7 +2,7 @@
 driverPackage:
 
 let
-  # https://github.com/keylase/nvidia-patch/blob/master/patch.sh
+  # Original definitions thanks to: https://github.com/keylase/nvidia-patch/blob/master/patch.sh
   patches = {
     "440.26" =
       "s/\\x85\\xc0\\x41\\x89\\xc4\\x75\\x1f/\\x31\\xc0\\x41\\x89\\xc4\\x75\\x1f/g";

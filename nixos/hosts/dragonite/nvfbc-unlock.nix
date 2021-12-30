@@ -1,8 +1,8 @@
-# config credit to https://github.com/babbaj/nix-config (unlicensed so I assume GPLv3 will be fine)
+# config credit to https://github.com/babbaj/nix-config - thank you so much!
 driverPackage:
 
 let
-  # https://github.com/keylase/nvidia-patch/blob/master/patch-fbc.sh
+  # Original definitions thanks to: https://github.com/keylase/nvidia-patch/blob/master/patch.sh
   patches = {
     "435.27.08" =
       "s/\\x85\\xc0\\x89\\xc3\\x0f\\x85\\x68\\xfa\\xff\\xff/\\x31\\xc0\\x89\\xc3\\x0f\\x85\\x68\\xfa\\xff\\xff/";
