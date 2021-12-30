@@ -87,7 +87,6 @@ in {
       "browser.cache.disk.enable" = false;
       "browser.cache.memory.capacity" = -1;
       "browser.cache.memory.enable" = true;
-      "browser.contentblocking.category" = "custom";
       "browser.contentblocking.category" = "strict";
       "browser.crashReports.unsubmittedCheck.autoSubmit2" = false;
       "browser.crashReports.unsubmittedCheck.enabled" = false;
@@ -138,7 +137,6 @@ in {
       "browser.shell.checkDefaultBrowser" = false;
       "browser.ssl_override_behavior" = 1;
       "browser.startup.homepage" = "about:blank";
-      "browser.startup.homepage" = "about:home";
       "browser.startup.homepage_override.mstone" = "ignore";
       "browser.startup.page" = 0;
       "browser.tabs.crashReporting.sendReport" = false;
