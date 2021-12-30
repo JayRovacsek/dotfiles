@@ -360,9 +360,9 @@ services:
       - /mnt/zfs/containers/tdarr/server:/app/server:rw
       - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
       - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
-      - /mnt/zfs/movies:/movies:ro
-      - /mnt/zfs/tv:/tv:ro
-      - /mnt/zfs/music:/music:ro
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/music:/music:rw
       - /transcode:/temp:rw
       - /mnt/zfs/test:/test:rw
 
@@ -388,7 +388,7 @@ services:
     runtime: nvidia
     environment:
       TZ: Australia/NSW
-      PUID: 998
+      PUID: 974
       PGID: 10002
       UMASK_SET: '002'
       nodeID: tdarr-node-01
@@ -428,7 +428,7 @@ services:
     runtime: nvidia
     environment:
       TZ: Australia/NSW
-      PUID: 998
+      PUID: 974
       PGID: 10002
       UMASK_SET: '002'
       nodeID: tdarr-node-02
@@ -468,7 +468,7 @@ services:
     runtime: nvidia
     environment:
       TZ: Australia/NSW
-      PUID: 998
+      PUID: 974
       PGID: 10002
       UMASK_SET: '002'
       nodeID: tdarr-node-03
@@ -508,7 +508,7 @@ services:
     runtime: nvidia
     environment:
       TZ: Australia/NSW
-      PUID: 998
+      PUID: 974
       PGID: 10002
       UMASK_SET: '002'
       nodeID: tdarr-node-04
