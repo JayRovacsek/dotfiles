@@ -18,16 +18,5 @@
     supportedFilesystems = [ "zfs" ];
     kernelParams = [ "amd_iommu=on" ];
   };
-
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport32Bit = true;
-    };
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-      modesetting.enable = true;
-    };
-  };
 }
 

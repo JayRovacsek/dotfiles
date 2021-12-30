@@ -15,6 +15,6 @@ in {
     jq
     oh-my-zsh
     nvidia-docker
-    linuxPackages.nvidia_x11_beta
+    linuxPackages.nvidia_x11
   ];
 }
