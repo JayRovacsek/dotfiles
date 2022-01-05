@@ -179,7 +179,7 @@ in {
       "geo.provider.ms-windows-location" = false;
       "geo.provider.use_corelocation" = false;
       "geo.provider.use_gpsd" = false;
-      "intl.accept_languages" = "en-US = en";
+      "intl.accept_languages" = "en-US, en";
       "keyword.enabled" = false;
       "layout.spellcheckDefault" = 2;
       "media.autoplay.default" = 5;
