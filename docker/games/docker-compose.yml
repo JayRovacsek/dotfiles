@@ -144,7 +144,9 @@ services:
           memory: 8192M
     dns:
       - 192.168.6.2
-    image: itzg/minecraft-server
+    container_name: minecraft-all-the-mods-7
+    hostname: minecraft-all-the-mods-7
+    image: itzg/minecraft-server:latest
     ports:
       - "25565:25565"
     volumes:
@@ -156,9 +158,15 @@ services:
       MAX_TICK_TIME: "-1"
       TYPE: CURSEFORGE
       MEMORY: "8G"
-      CF_SERVER_MOD: All the Mods 7-0.2.34.zip
+      CF_SERVER_MOD: SIMPLE-SERVER-FILES-0.2.34.zip
       UID: 989
       GID: 10017
+      MOTD: "Fuck Bees"
+      MAX_PLAYERS: 10
+      SNOOPER_ENABLED: "FALSE"
+      SPAWN_PROTECTION: 0
+      SERVER_NAME: "Seeb Kcuf"
+      TZ: Australia/NSW
     restart: unless-stopped
     logging:
       driver: journald
