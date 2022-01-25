@@ -140,8 +140,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 8.0
-          memory: 8192M
+          cpus: 4.0
+          memory: 12288M
     dns:
       - 192.168.6.2
     container_name: minecraft-all-the-mods-7
@@ -155,7 +155,7 @@ services:
       EULA: "TRUE"
       OVERRIDE_SERVER_PROPERTIES: "TRUE"
       TYPE: CURSEFORGE
-      MEMORY: "8G"
+      MEMORY: "12G"
       CF_SERVER_MOD: SIMPLE-SERVER-FILES-0.2.34.zip
       UID: 989
       GID: 10017
