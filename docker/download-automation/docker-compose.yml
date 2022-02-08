@@ -5,24 +5,25 @@ networks:
       parent: enp9s0.4
     ipam:
       config:
-      - gateway: 192.168.4.1
-        subnet: 192.168.4.0/24
+        - gateway: 192.168.4.1
+          subnet: 192.168.4.0/24
       driver: default
 
 services:
   amd:
     container_name: amd
+    hostname: amd
     deploy:
       resources:
         limits:
           cpus: 2.0
           memory: 1024M
     dns:
-    - 192.195.100.3
-    - 82.146.26.2
-    - 37.235.1.174
+      - 192.195.100.3
+      - 82.146.26.2
+      - 37.235.1.174
     entrypoint:
-    - /init
+      - /init
     environment:
       ARL_TOKEN: ''
       AUTOSTART: "true"
@@ -51,7 +52,6 @@ services:
       TITLESHORT: AMD
       replaygain: "true"
       requirequality: "false"
-    hostname: amd
     image: randomninjaatk/amd:latest
     ipc: private
     logging:
@@ -62,22 +62,23 @@ services:
         ipv4_address: 192.168.4.142
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/containers/amd:/config:rw
-    - /mnt/zfs/downloads:/downloads-amd:rw
+      - /mnt/zfs/containers/amd:/config:rw
+      - /mnt/zfs/downloads:/downloads-amd:rw
     working_dir: /config
 
   deluge:
     container_name: deluge
+    hostname: deluge
     deploy:
       resources:
         limits:
           cpus: 1.0
           memory: 2048M
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
     entrypoint:
-    - /init
+      - /init
     environment:
       HOME: /root
       LANG: en_US.UTF-8
@@ -89,7 +90,6 @@ services:
       TERM: xterm
       TZ: Australia/NSW
       UMASK: '022'
-    hostname: deluge
     image: ghcr.io/linuxserver/deluge:amd64-latest
     ipc: private
     logging:
@@ -99,73 +99,33 @@ services:
       download:
         ipv4_address: 192.168.4.130
     ports:
-    - protocol: tcp
-      published: 6881
-      target: 6881
-    - protocol: udp
-      published: 6881
-      target: 6881
-    - protocol: tcp
-      published: 8112
-      target: 8112
+      - protocol: tcp
+        published: 6881
+        target: 6881
+      - protocol: udp
+        published: 6881
+        target: 6881
+      - protocol: tcp
+        published: 8112
+        target: 8112
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/containers/deluge:/config:rw
-    - /mnt/zfs/downloads:/downloads:rw
-
-  jackett:
-    container_name: jackett
-    deploy:
-      resources:
-        limits:
-          cpus: 2.0
-          memory: 2048M
-    dns:
-    - 192.168.6.2
-    - 192.168.4.1
-    entrypoint:
-    - /init
-    environment:
-      HOME: /root
-      LANG: en_US.UTF-8
-      LANGUAGE: en_US.UTF-8
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      PGID: '10009'
-      PUID: '980'
-      TERM: xterm
-      UMASK: '022'
-      XDG_CONFIG_HOME: /config
-      XDG_DATA_HOME: /config
-    hostname: jackett  
-    image: ghcr.io/linuxserver/jackett:amd64-latest
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      download:
-        ipv4_address: 192.168.4.129
-    ports:
-    - protocol: tcp
-      published: 9117
-      target: 9117
-    restart: unless-stopped
-    volumes:
-    - /mnt/zfs/containers/jackett:/config:rw
-    - /mnt/zfs/containers/jackett/blackhole:/downloads:rw
+      - /mnt/zfs/containers/deluge:/config:rw
+      - /mnt/zfs/downloads:/downloads:rw
 
   lidarr:
     container_name: lidarr
+    hostname: lidarr
     deploy:
       resources:
         limits:
           cpus: 1.0
           memory: 2048M
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
     entrypoint:
-    - /init
+      - /init
     environment:
       HOME: /root
       LANG: en_US.UTF-8
@@ -178,8 +138,7 @@ services:
       UMASK: '022'
       XDG_CONFIG_HOME: /config/xdg
     extra_hosts:
-    - deluge:192.168.4.130
-    hostname: lidarr
+      - deluge:192.168.4.130
     image: ghcr.io/linuxserver/lidarr:amd64-latest
     ipc: private
     logging:
@@ -189,32 +148,33 @@ services:
       download:
         ipv4_address: 192.168.4.133
     ports:
-    - protocol: tcp
-      published: 8443
-      target: 8443
-    - protocol: tcp
-      published: 8686
-      target: 8686
+      - protocol: tcp
+        published: 8443
+        target: 8443
+      - protocol: tcp
+        published: 8686
+        target: 8686
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/containers/lidarr:/config:rw
-    - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
-    - /mnt/zfs/downloads:/downloads:rw
-    - /mnt/zfs/downloads:/downloads-amd:rw
-    - /mnt/zfs/music:/music:rw
+      - /mnt/zfs/containers/lidarr:/config:rw
+      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
+      - /mnt/zfs/downloads:/downloads:rw
+      - /mnt/zfs/downloads:/downloads-amd:rw
+      - /mnt/zfs/music:/music:rw
 
   ombi:
     container_name: ombi
+    hostname: ombi
     deploy:
       resources:
         limits:
           cpus: 1.0
           memory: 2048M
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
     entrypoint:
-    - /init
+      - /init
     environment:
       HOME: /config
       LANG: en_US.UTF-8
@@ -224,7 +184,6 @@ services:
       PUID: '973'
       TERM: xterm
       UMASK: '022'
-    hostname: ombi  
     image: ghcr.io/linuxserver/ombi:amd64-development
     ipc: private
     logging:
@@ -234,25 +193,26 @@ services:
       download:
         ipv4_address: 192.168.4.134
     ports:
-    - protocol: tcp
-      published: 3579
-      target: 3579
+      - protocol: tcp
+        published: 3579
+        target: 3579
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/containers/ombi:/config:rw
+      - /mnt/zfs/containers/ombi:/config:rw
 
   radarr:
     container_name: radarr
+    hostname: radarr
     deploy:
       resources:
         limits:
           cpus: 1.0
           memory: 2048M
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
     entrypoint:
-    - /init
+      - /init
     environment:
       HOME: /root
       LANG: en_US.UTF-8
@@ -265,8 +225,7 @@ services:
       UMASK: '022'
       XDG_CONFIG_HOME: /config/xdg
     extra_hosts:
-    - deluge:192.168.4.130
-    hostname: radarr
+      - deluge:192.168.4.130
     image: ghcr.io/linuxserver/radarr:amd64-latest
     ipc: private
     logging:
@@ -276,31 +235,32 @@ services:
       download:
         ipv4_address: 192.168.4.132
     ports:
-    - protocol: tcp
-      published: 7878
-      target: 7878
-    - protocol: tcp
-      published: 8443
-      target: 8443
+      - protocol: tcp
+        published: 7878
+        target: 7878
+      - protocol: tcp
+        published: 8443
+        target: 8443
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/containers/radarr:/config:rw
-    - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
-    - /mnt/zfs/downloads:/downloads:rw
-    - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/containers/radarr:/config:rw
+      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
+      - /mnt/zfs/downloads:/downloads:rw
+      - /mnt/zfs/movies:/movies:rw
 
   sonarr:
     container_name: sonarr
+    hostname: sonarr
     deploy:
       resources:
         limits:
           cpus: 1.0
           memory: 2048M
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
     entrypoint:
-    - /init
+      - /init
     environment:
       HOME: /root
       LANG: en_US.UTF-8
@@ -314,8 +274,7 @@ services:
       UMASK: '022'
       XDG_CONFIG_HOME: /config/xdg
     extra_hosts:
-    - deluge:192.168.4.130
-    hostname: sonarr
+      - deluge:192.168.4.130
     image: ghcr.io/linuxserver/sonarr:amd64-latest
     ipc: private
     logging:
@@ -325,14 +284,50 @@ services:
       download:
         ipv4_address: 192.168.4.131
     ports:
-    - protocol: tcp
-      published: 8989
-      target: 8989
+      - protocol: tcp
+        published: 8989
+        target: 8989
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/containers/sonarr:/config:rw
-    - /mnt/zfs/downloads:/downloads:rw
-    - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/containers/sonarr:/config:rw
+      - /mnt/zfs/downloads:/downloads:rw
+      - /mnt/zfs/tv:/tv:rw
+
+  prowlarr:
+    image: ghcr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    hostname: prowlarr
+    dns:
+      - 192.168.6.2
+      - 192.168.4.1
+    networks:
+      download:
+        ipv4_address: 192.168.4.137
+    environment:
+      PUID: 971
+      PGID: 10005
+      TZ: Australia/NSW
+    volumes:
+      - /mnt/zfs/containers/prowlarr:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    dns:
+      - 192.168.6.2
+      - 192.168.4.1
+    networks:
+      download:
+        ipv4_address: 192.168.4.138
+    environment:
+      LOG_LEVEL: info
+      TZ: Australia/NSW
+    ports:
+      - 8191:8191
+    restart: unless-stopped
 
   tdarr:
     container_name: tdarr
@@ -343,8 +338,8 @@ services:
           memory: 2048M
     hostname: tdarr-controller
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
     image: haveagitgat/tdarr:latest
     restart: unless-stopped
     networks:
@@ -357,7 +352,7 @@ services:
       TZ: Australia/NSW
       PUID: 974
       PGID: 10002
-      UMASK_SET: 002
+      UMASK_SET: '002'
       serverIP: 192.168.4.135
       serverPort: 8266
       webUIPort: 8265
@@ -365,13 +360,13 @@ services:
       - /mnt/zfs/containers/tdarr/server:/app/server:rw
       - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
       - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
-      - /mnt/zfs/movies:/movies:ro
-      - /mnt/zfs/tv:/tv:ro
-      - /mnt/zfs/music:/music:ro
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/music:/music:rw
       - /transcode:/temp:rw
       - /mnt/zfs/test:/test:rw
 
-  tdarr-node:
+  tdarr-node-01:
     container_name: tdarr-node-01
     deploy:
       resources:
@@ -379,8 +374,9 @@ services:
           cpus: 2.0
           memory: 4096M
     dns:
-    - 192.168.6.2
-    - 192.168.4.1
+      - 192.168.6.2
+      - 192.168.4.1
+
     hostname: tdarr-node-01
     image: haveagitgat/tdarr_node:latest
     ports:
@@ -394,8 +390,8 @@ services:
       TZ: Australia/NSW
       PUID: 974
       PGID: 10002
-      UMASK_SET: 002
-      nodeID: node-01
+      UMASK_SET: '002'
+      nodeID: tdarr-node-01
       nodeIP: 192.168.4.136
       nodePort: 8267
       serverIP: 192.168.4.135
@@ -409,6 +405,125 @@ services:
       - /mnt/zfs/tv:/tv:rw
       - /mnt/zfs/music:/music:rw
       - /transcode:/temp:rw
-      - /mnt/zfs/test:/test:rw
+
+  tdarr-node-02:
+    container_name: tdarr-node-02
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 4096M
+    dns:
+      - 192.168.6.2
+      - 192.168.4.1
+
+    hostname: tdarr-node-02
+    image: haveagitgat/tdarr_node:latest
+    ports:
+      - 8267:8267
+    restart: unless-stopped
+    networks:
+      download:
+        ipv4_address: 192.168.4.139
+    runtime: nvidia
+    environment:
+      TZ: Australia/NSW
+      PUID: 974
+      PGID: 10002
+      UMASK_SET: '002'
+      nodeID: tdarr-node-02
+      nodeIP: 192.168.4.139
+      nodePort: 8267
+      serverIP: 192.168.4.135
+      serverPort: 8266
+      NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: all
+    volumes:
+      - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
+      - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/music:/music:rw
+      - /transcode:/temp:rw
+
+  tdarr-node-03:
+    container_name: tdarr-node-03
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 4096M
+    dns:
+      - 192.168.6.2
+      - 192.168.4.1
+
+    hostname: tdarr-node-03
+    image: haveagitgat/tdarr_node:latest
+    ports:
+      - 8267:8267
+    restart: unless-stopped
+    networks:
+      download:
+        ipv4_address: 192.168.4.140
+    runtime: nvidia
+    environment:
+      TZ: Australia/NSW
+      PUID: 974
+      PGID: 10002
+      UMASK_SET: '002'
+      nodeID: tdarr-node-03
+      nodeIP: 192.168.4.140
+      nodePort: 8267
+      serverIP: 192.168.4.135
+      serverPort: 8266
+      NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: all
+    volumes:
+      - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
+      - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/music:/music:rw
+      - /transcode:/temp:rw
+
+  tdarr-node-04:
+    container_name: tdarr-node-04
+    deploy:
+      resources:
+        limits:
+          cpus: 2.0
+          memory: 4096M
+    dns:
+      - 192.168.6.2
+      - 192.168.4.1
+
+    hostname: tdarr-node-04
+    image: haveagitgat/tdarr_node:latest
+    ports:
+      - 8267:8267
+    restart: unless-stopped
+    networks:
+      download:
+        ipv4_address: 192.168.4.141
+    runtime: nvidia
+    environment:
+      TZ: Australia/NSW
+      PUID: 974
+      PGID: 10002
+      UMASK_SET: '002'
+      nodeID: tdarr-node-04
+      nodeIP: 192.168.4.141
+      nodePort: 8267
+      serverIP: 192.168.4.135
+      serverPort: 8266
+      NVIDIA_DRIVER_CAPABILITIES: all
+      NVIDIA_VISIBLE_DEVICES: all
+    volumes:
+      - /mnt/zfs/containers/tdarr/configs:/app/configs:rw
+      - /mnt/zfs/containers/tdarr/logs:/app/logs:rw
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/music:/music:rw
+      - /transcode:/temp:rw
 
 version: '3'

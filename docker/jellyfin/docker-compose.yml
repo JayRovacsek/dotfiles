@@ -2,6 +2,7 @@ networks:
   reverse_proxy:
     external: true
     name: reverse_proxy
+
 services:
   jellyfin:
     container_name: jellyfin
@@ -47,6 +48,7 @@ services:
     - /mnt/zfs/music:/music:rw
     - /mnt/zfs/tv:/tv:rw
     - /tmp/transcodes:/config/transcodes:rw
+
   jellyfin-discord-bot:
     container_name: jellyfin-discord-bot
     deploy:
@@ -75,4 +77,33 @@ services:
         ipv4_address: 192.168.5.5
     restart: unless-stopped
   
+  embystat:
+    container_name: embystat
+    deploy:
+      resources:
+        limits:
+          cpus: 1.0
+          memory: 2048M
+    dns:
+      - 192.168.6.2
+    networks:
+      reverse_proxy:
+        ipv4_address: 192.168.5.6
+    environment:
+      EMBYSTAT_LOGLEVEL: 1
+    hostname: embystat
+    image: uping/embystat:beta
+    ipc: private
+    logging:
+      driver: journald
+      options: {}
+    ports:
+      - protocol: tcp
+        published: 6555
+        target: 6555
+    user: "998:10002"
+    volumes:
+      - /mnt/zfs/containers/embystat:/app/data:rw
+    restart: unless-stopped
+
 version: '3'
