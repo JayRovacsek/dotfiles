@@ -37,6 +37,9 @@ in {
     gcc
     gnumake
 
+    ## Python
+    python3Minimal
+
     ## Rust
     cargo
     clippy
@@ -48,9 +51,6 @@ in {
     nodejs
     nodePackages.npm
     nodePackages.typescript
-
-    ## Python
-    python310
 
     ## Nix
     nixfmt
@@ -65,6 +65,7 @@ in {
     ## Virtualisation
     docker
     docker-compose
+    lima
 
     ## Tex
     texlive.combined.scheme-full
