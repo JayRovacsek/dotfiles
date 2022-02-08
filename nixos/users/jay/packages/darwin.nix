@@ -38,7 +38,7 @@ in {
     gnumake
 
     ## Python
-    python3Minimal
+    python3Full
 
     ## Rust
     cargo
