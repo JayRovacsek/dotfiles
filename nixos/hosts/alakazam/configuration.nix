@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -61,7 +59,17 @@
     enable = true;
     layout = "us";
     videoDrivers = [ "nvidia" ];
-    displayManager = { gdm.enable = true; };
+    displayManager = {
+      gdm = {
+        enable = true;
+        nvidiaWayland = false;
+        wayland = false;
+      };
+      autoLogin = {
+        enable = true;
+        user = "jay";
+      };
+    };
     desktopManager.gnome.enable = true;
   };
 
@@ -89,11 +97,6 @@
       isNormalUser = true;
       useDefaultShell = true;
       extraGroups = [ "wheel" "docker" "libirt" ];
-    };
-    sarah = {
-      isNormalUser = true;
-      useDefaultShell = true;
-      extraGroups = [ "wheel" ];
     };
   };
 
@@ -123,6 +126,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    bintools
     cifs-utils
     dnsutils
     exfat
@@ -130,9 +134,6 @@
     libfido2
     linuxPackages.nvidia_x11
     nerdfonts
-    paperkey
-    pinentry-curses
-    pinentry-gnome
     traceroute
     vim
     vulkan-extension-layer
@@ -148,12 +149,6 @@
     gjs
     gnome.gnome-tweaks
     gnome.nautilus
-
-    ## Gnome Extensions
-    gnomeExtensions.application-volume-mixer
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.screenshot-tool
   ];
 
   environment.gnome.excludePackages = with pkgs; [
@@ -191,13 +186,20 @@
     allowedUsers = [ "@wheel" "jay" ];
     autoOptimiseStore = true;
     optimise.automatic = true;
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
+
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   # Auto-update options
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "04:00";
   system.autoUpgrade.allowReboot = true;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 }
 
