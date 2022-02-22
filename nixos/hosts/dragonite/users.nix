@@ -38,7 +38,7 @@
 
     media = {
       gid = 10002;
-      members = [ "jellyfin" "sonarr" "radarr" "lidarr" "tdarr" ];
+      members = [ "jellyfin" "sonarr" "radarr" "lidarr" "tdarr" "prowlarr" ];
     };
 
     nextcloud = {
@@ -130,121 +130,145 @@
     jellyfin = {
       inherit isSystemUser createHome description;
       uid = 998;
+      group = "jellyfin";
     };
 
     portainer = {
       inherit isSystemUser createHome description;
       uid = 997;
+      group = "portainer";
     };
 
     speedtest = {
       inherit isSystemUser createHome description;
       uid = 996;
+      group = "speedtest";
     };
 
     authelia = {
       inherit isSystemUser createHome description;
       uid = 991;
+      group = "authelia";
     };
 
     lidarr = {
       inherit isSystemUser createHome description;
       uid = 990;
+      group = "download";
     };
 
     minecraft = {
       inherit isSystemUser createHome description;
       uid = 989;
+      group = "games";
     };
 
     nextcloud = {
       inherit isSystemUser createHome description;
       uid = 988;
+      group = "nextcloud";
     };
 
     nginx = {
       inherit isSystemUser createHome description;
       uid = 987;
+      group = "nginx";
     };
 
     radarr = {
       inherit isSystemUser createHome description;
       uid = 986;
+      group = "download";
     };
 
     sonarr = {
       inherit isSystemUser createHome description;
       uid = 985;
+      group = "download";
     };
 
     download = {
       inherit isSystemUser createHome description;
       uid = 984;
+      group = "download";
     };
 
     backup = {
       inherit isSystemUser createHome description;
       uid = 983;
+      group = "backup";
     };
 
     db = {
       inherit isSystemUser createHome description;
       uid = 982;
+      group = "db";
     };
 
     home_assistant = {
       inherit isSystemUser createHome description;
       uid = 981;
+      group = "home_assistant";
     };
 
     jackett = {
       inherit isSystemUser createHome description;
       uid = 980;
+      group = "download";
     };
 
     pihole = {
       inherit isSystemUser createHome description;
       uid = 979;
+      group = "pihole";
     };
 
     redis = {
       inherit isSystemUser createHome description;
       uid = 978;
+      group = "redis";
     };
 
     unify = {
       inherit isSystemUser createHome description;
       uid = 977;
+      group = "unify";
     };
 
     swag = {
       inherit isSystemUser createHome description;
       uid = 976;
+      group = "swag";
     };
 
     valheim = {
       inherit isSystemUser createHome description;
       uid = 975;
+      group = "games";
     };
 
     tdarr = {
       inherit isSystemUser createHome description;
       uid = 974;
+      group = "media";
     };
 
     ombi = {
       inherit isSystemUser createHome description;
       uid = 973;
+      group = "media";
     };
 
     duin = {
       inherit isSystemUser createHome description;
       uid = 972;
+      group = "duin";
     };
 
     prowlarr = {
       inherit isSystemUser createHome description;
       uid = 971;
+      group = "media";
     };
 
   };

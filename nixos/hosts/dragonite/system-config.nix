@@ -15,7 +15,7 @@
     autoUpgrade.enable = true;
     autoUpgrade.allowReboot = true;
     autoUpgrade.dates = "04:30";
-    stateVersion = "21.05";
+    stateVersion = "21.11";
   };
 
   time.timeZone = "Australia/NSW";
