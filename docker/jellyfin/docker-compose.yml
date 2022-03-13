@@ -12,9 +12,10 @@ services:
           cpus: 8.0
           memory: 12288M
     dns:
-    - 192.168.6.2
+      - 192.168.6.4
+      - 192.168.6.2
     entrypoint:
-    - /init
+      - /init
     environment:
       HOME: /root
       LANG: en_US.UTF-8
@@ -37,73 +38,16 @@ services:
       reverse_proxy:
         ipv4_address: 192.168.5.4
     ports:
-    - protocol: tcp
-      published: 8096
-      target: 8096
+      - protocol: tcp
+        published: 8096
+        target: 8096
     restart: unless-stopped
     runtime: nvidia
     volumes:
-    - /mnt/zfs/containers/jellyfin:/config:rw
-    - /mnt/zfs/movies:/movies:rw
-    - /mnt/zfs/music:/music:rw
-    - /mnt/zfs/tv:/tv:rw
-    - /tmp/transcodes:/config/transcodes:rw
-
-  jellyfin-discord-bot:
-    container_name: jellyfin-discord-bot
-    deploy:
-      resources:
-        limits:
-          cpus: 2.0
-          memory: 2048M
-    dns:
-    - 192.168.6.2
-    environment:
-      DISCORD_PREFIX: "?"
-      DISCORD_TOKEN: ""
-      JELLYFIN_SERVER_ADDRESS: "https://jellyfin.rovacsek.com"
-      JELLYFIN_USERNAME: ""
-      JELLYFIN_PASSWORD: ""
-      JELLYFIN_APP_NAME: "Jellyfin Discord Music Bot"
-      MESSAGE_UPDATE_INTERVAL: "2000"
-    hostname: jellyfin-discord-bot
-    image: kgt1/jellyfin-discord-music-bot
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      reverse_proxy:
-        ipv4_address: 192.168.5.5
-    restart: unless-stopped
-  
-  embystat:
-    container_name: embystat
-    deploy:
-      resources:
-        limits:
-          cpus: 1.0
-          memory: 2048M
-    dns:
-      - 192.168.6.2
-    networks:
-      reverse_proxy:
-        ipv4_address: 192.168.5.6
-    environment:
-      EMBYSTAT_LOGLEVEL: 1
-    hostname: embystat
-    image: uping/embystat:beta
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    ports:
-      - protocol: tcp
-        published: 6555
-        target: 6555
-    user: "998:10002"
-    volumes:
-      - /mnt/zfs/containers/embystat:/app/data:rw
-    restart: unless-stopped
+      - /mnt/zfs/containers/jellyfin:/config:rw
+      - /mnt/zfs/movies:/movies:rw
+      - /mnt/zfs/music:/music:rw
+      - /mnt/zfs/tv:/tv:rw
+      - /tmp/transcodes:/config/transcodes:rw
 
 version: '3'

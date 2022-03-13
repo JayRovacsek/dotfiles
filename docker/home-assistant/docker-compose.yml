@@ -5,8 +5,8 @@ networks:
       parent: enp9s0.12
     ipam:
       config:
-      - gateway: 192.168.12.1
-        subnet: 192.168.12.0/24
+        - gateway: 192.168.12.1
+          subnet: 192.168.12.0/24
       driver: default
 services:
   home-assistant:
@@ -17,10 +17,10 @@ services:
           cpus: 2.0
           memory: 2048M
     dns:
-    - 192.168.6.2
-    - 192.168.12.1
+      - 192.168.6.4
+      - 192.168.6.2
     entrypoint:
-    - /init
+      - /init
     environment:
       LANG: C.UTF-8
       PATH: /usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -38,12 +38,11 @@ services:
       home_assistant:
         ipv4_address: 192.168.12.2
     ports:
-    - protocol: tcp
-      published: 8123
-      target: 8123
+      - protocol: tcp
+        published: 8123
+        target: 8123
     restart: unless-stopped
     volumes:
-    - /mnt/zfs/home_assistant:/config:rw
+      - /mnt/zfs/home_assistant:/config:rw
     working_dir: /config
 version: '3'
-

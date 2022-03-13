@@ -16,6 +16,7 @@ services:
           cpus: 2.0
           memory: 4096M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
     environment:
       CACHE_DISK_SIZE: 2000000m

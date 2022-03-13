@@ -12,7 +12,8 @@ services:
           cpus: 4.0
           memory: 4096M
     dns:
-    - 192.168.6.2
+      - 192.168.6.4
+      - 192.168.6.2
     networks:
       lan:
         ipv4_address: 192.168.1.223
@@ -28,5 +29,5 @@ services:
     ports:
       - 8200:8200
     restart: unless-stopped
-    
+
 version: '3'
