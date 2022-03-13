@@ -17,6 +17,7 @@ services:
           cpus: 8.0
           memory: 8192M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
     image: itzg/minecraft-server
     ports:
@@ -46,6 +47,7 @@ services:
           cpus: 8.0
           memory: 8192M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
     image: ghcr.io/lloesche/valheim-server
     cap_add:
@@ -118,6 +120,7 @@ services:
           cpus: 2.0
           memory: 8192M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
     image: beardedio/terraria:vanilla-latest
     ports:
@@ -143,6 +146,7 @@ services:
           cpus: 4.0
           memory: 12288M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
     container_name: minecraft-all-the-mods-7
     hostname: minecraft-all-the-mods-7
@@ -165,6 +169,7 @@ services:
       SPAWN_PROTECTION: 0
       SERVER_NAME: "Seeb Kcuf"
       TZ: Australia/NSW
+
     restart: unless-stopped
     logging:
       driver: journald
