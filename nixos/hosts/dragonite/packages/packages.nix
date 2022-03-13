@@ -16,5 +16,7 @@ in {
     oh-my-zsh
     nvidia-docker
     linuxPackages.nvidia_x11
+    lm_sensors
+    hddtemp
   ];
 }
