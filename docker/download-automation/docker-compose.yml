@@ -19,9 +19,8 @@ services:
           cpus: 2.0
           memory: 1024M
     dns:
-      - 192.195.100.3
-      - 82.146.26.2
-      - 37.235.1.174
+      - 192.168.6.4
+      - 192.168.6.2
     entrypoint:
       - /init
     environment:
@@ -75,8 +74,8 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     entrypoint:
       - /init
     environment:
@@ -122,8 +121,8 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     entrypoint:
       - /init
     environment:
@@ -171,8 +170,8 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     entrypoint:
       - /init
     environment:
@@ -209,8 +208,8 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     entrypoint:
       - /init
     environment:
@@ -257,8 +256,8 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     entrypoint:
       - /init
     environment:
@@ -298,8 +297,8 @@ services:
     container_name: prowlarr
     hostname: prowlarr
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     networks:
       download:
         ipv4_address: 192.168.4.137
@@ -317,8 +316,8 @@ services:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     networks:
       download:
         ipv4_address: 192.168.4.138
@@ -338,8 +337,8 @@ services:
           memory: 2048M
     hostname: tdarr-controller
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
     image: haveagitgat/tdarr:latest
     restart: unless-stopped
     networks:
@@ -374,9 +373,8 @@ services:
           cpus: 2.0
           memory: 4096M
     dns:
+      - 192.168.6.4
       - 192.168.6.2
-      - 192.168.4.1
-
     hostname: tdarr-node-01
     image: haveagitgat/tdarr_node:latest
     ports:
