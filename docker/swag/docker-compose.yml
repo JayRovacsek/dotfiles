@@ -26,12 +26,11 @@ services:
       PUID: '976'
       S6_BEHAVIOUR_IF_STAGE2_FAILS: '2'
       STAGING: "false"
-      SUBDOMAINS: pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,duplicati,pihole,portainer,homeassistant,tdarr,prowlarr,dashboard,binarycache
+      SUBDOMAINS: pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,duplicati,pihole,portainer,homeassistant,tdarr,prowlarr,binarycache
       TERM: xterm
       UMASK: '002'
       URL: rovacsek.com
       VALIDATION: http
-      DOCKER_MODS: linuxserver/mods:swag-dashboard
     hostname: swag
     image: ghcr.io/linuxserver/swag:amd64-latest
     ipc: private
@@ -48,9 +47,6 @@ services:
       - protocol: tcp
         published: 80
         target: 80
-      - protocol: tcp
-        published: 81
-        target: 81
     restart: unless-stopped
     volumes:
       - /mnt/zfs/containers/swag:/config:rw
