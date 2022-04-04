@@ -1,5 +1,11 @@
 {
   services = {
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+      port = 5000;
+      openFirewall = true;
+    };
     xserver = { videoDrivers = [ "nvidia" ]; };
     openssh.enable = true;
     zfs.autoSnapshot.enable = true;
