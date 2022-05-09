@@ -48,6 +48,7 @@ services:
       - /mnt/zfs/movies:/movies:rw
       - /mnt/zfs/music:/music:rw
       - /mnt/zfs/tv:/tv:rw
+      - /mnt/zfs/study:/study:rw
       - /tmp/transcodes:/config/transcodes:rw
 
 version: '3'
