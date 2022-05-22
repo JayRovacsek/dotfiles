@@ -19,8 +19,7 @@ services:
           cpus: 2.0
           memory: 1024M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     entrypoint:
       - /init
     environment:
@@ -74,8 +73,7 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     entrypoint:
       - /init
     environment:
@@ -89,7 +87,7 @@ services:
       TERM: xterm
       TZ: Australia/NSW
       UMASK: '022'
-    image: ghcr.io/linuxserver/deluge:amd64-latest
+    image: ghcr.io/linuxserver/deluge:latest
     ipc: private
     logging:
       driver: journald
@@ -120,25 +118,15 @@ services:
         limits:
           cpus: 1.0
           memory: 2048M
-    dns:
-      - 192.168.6.4
-      - 192.168.6.2
     entrypoint:
       - /init
     environment:
-      HOME: /root
-      LANG: en_US.UTF-8
-      LANGUAGE: en_US.UTF-8
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PGID: '10002'
       PUID: '990'
-      TERM: xterm
       TZ: Australia/NSW
       UMASK: '022'
-      XDG_CONFIG_HOME: /config/xdg
-    extra_hosts:
-      - deluge:192.168.4.130
-    image: ghcr.io/linuxserver/lidarr:amd64-latest
+
+    image: ghcr.io/linuxserver/lidarr:nightly
     ipc: private
     logging:
       driver: journald
@@ -148,15 +136,15 @@ services:
         ipv4_address: 192.168.4.133
     ports:
       - protocol: tcp
-        published: 8443
-        target: 8443
+        published: 443
+        target: 443
       - protocol: tcp
         published: 8686
         target: 8686
     restart: unless-stopped
     volumes:
       - /mnt/zfs/containers/lidarr:/config:rw
-      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
+      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:ro
       - /mnt/zfs/downloads:/downloads:rw
       - /mnt/zfs/downloads:/downloads-amd:rw
       - /mnt/zfs/music:/music:rw
@@ -170,8 +158,7 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     entrypoint:
       - /init
     environment:
@@ -183,7 +170,7 @@ services:
       PUID: '973'
       TERM: xterm
       UMASK: '022'
-    image: ghcr.io/linuxserver/ombi:amd64-development
+    image: ghcr.io/linuxserver/ombi:latest
     ipc: private
     logging:
       driver: journald
@@ -208,8 +195,7 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     entrypoint:
       - /init
     environment:
@@ -225,7 +211,7 @@ services:
       XDG_CONFIG_HOME: /config/xdg
     extra_hosts:
       - deluge:192.168.4.130
-    image: ghcr.io/linuxserver/radarr:amd64-latest
+    image: ghcr.io/linuxserver/radarr:latest
     ipc: private
     logging:
       driver: journald
@@ -243,7 +229,7 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/zfs/containers/radarr:/config:rw
-      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:rw
+      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:ro
       - /mnt/zfs/downloads:/downloads:rw
       - /mnt/zfs/movies:/movies:rw
 
@@ -256,8 +242,7 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     entrypoint:
       - /init
     environment:
@@ -274,7 +259,7 @@ services:
       XDG_CONFIG_HOME: /config/xdg
     extra_hosts:
       - deluge:192.168.4.130
-    image: ghcr.io/linuxserver/sonarr:amd64-latest
+    image: ghcr.io/linuxserver/sonarr:latest
     ipc: private
     logging:
       driver: journald
@@ -297,8 +282,7 @@ services:
     container_name: prowlarr
     hostname: prowlarr
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     networks:
       download:
         ipv4_address: 192.168.4.137
@@ -316,8 +300,7 @@ services:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     networks:
       download:
         ipv4_address: 192.168.4.138
@@ -337,8 +320,7 @@ services:
           memory: 2048M
     hostname: tdarr-controller
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     image: haveagitgat/tdarr:latest
     restart: unless-stopped
     networks:
@@ -373,8 +355,7 @@ services:
           cpus: 2.0
           memory: 4096M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.6.6
     hostname: tdarr-node-01
     image: haveagitgat/tdarr_node:latest
     ports:

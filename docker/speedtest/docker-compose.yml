@@ -10,16 +10,16 @@ services:
       lan:
         ipv4_address: 192.168.1.222
     ports:
-    - 8765:80
+      - 8765:80
     dns:
-    - 192.168.6.2
+      - 192.168.6.6
     volumes:
-    - /mnt/zfs/logs/speedtest:/config
+      - /mnt/zfs/logs/speedtest:/config
     environment:
-    - TZ=Australia/NSW
-    - PGID=996
-    - PUID=10016
-    - OOKLA_EULA_GDPR=true
+      - TZ=Australia/NSW
+      - PGID=996
+      - PUID=10016
+      - OOKLA_EULA_GDPR=true
     logging:
       driver: "json-file"
       options:
