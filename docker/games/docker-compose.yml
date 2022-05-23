@@ -17,7 +17,8 @@ services:
           cpus: 8.0
           memory: 8192M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     image: itzg/minecraft-server
     ports:
       - "25565:25565"
@@ -46,7 +47,8 @@ services:
           cpus: 8.0
           memory: 8192M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     image: ghcr.io/lloesche/valheim-server
     cap_add:
       - sys_nice
@@ -118,7 +120,8 @@ services:
           cpus: 2.0
           memory: 8192M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     image: beardedio/terraria:vanilla-latest
     ports:
       - "7777:7777"
@@ -143,7 +146,8 @@ services:
           cpus: 4.0
           memory: 12288M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     container_name: minecraft-all-the-mods-7
     extra_hosts:
       localhost: 127.0.0.1

@@ -12,7 +12,8 @@ services:
           cpus: 1.0
           memory: 2048M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     environment:
       - PUID=977
       - PGID=10010
