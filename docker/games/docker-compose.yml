@@ -1,3 +1,5 @@
+version: "3"
+
 networks:
   games:
     driver: macvlan
@@ -10,169 +12,169 @@ networks:
       driver: default
 
 services:
+  # minecraft:
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: 8.0
+  #         memory: 8192M
+  #   dns:
+  #     - 192.168.6.4
+  #     - 192.168.6.2
+  #   image: itzg/minecraft-server
+  #   ports:
+  #     - "25565:25565"
+  #   volumes:
+  #     - "/mnt/zfs/games/minecraft:/data"
+  #   environment:
+  #     EULA: "TRUE"
+  #     ENABLE_AUTOPAUSE: "TRUE"
+  #     OVERRIDE_SERVER_PROPERTIES: "TRUE"
+  #     MAX_TICK_TIME: "-1"
+  #     MEMORY: "8G"
+  #     UID: 989
+  #     GID: 10017
+  #   restart: unless-stopped
+  #   logging:
+  #     driver: journald
+  #     options: {}
+  #   networks:
+  #     games:
+  #       ipv4_address: 192.168.17.2
+
+  # valheim:
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: 8.0
+  #         memory: 8192M
+  #   dns:
+  #     - 192.168.6.4
+  #     - 192.168.6.2
+  #   image: ghcr.io/lloesche/valheim-server
+  #   cap_add:
+  #     - sys_nice
+  #   volumes:
+  #     - /mnt/zfs/games/valheim-server/config:/config
+  #     - /mnt/zfs/games/valheim-server/data:/opt/valheim
+  #   ports:
+  #     - "2456-2457:2456-2457/udp"
+  #     - "9001:9001/tcp"
+  #   environment:
+  #     SERVER_NAME: ""
+  #     SERVER_PASS: ""
+  #     SERVER_PUBLIC: "false"
+  #     UPDATE_CRON: "*/15 * * * *"
+  #     UPDATE_IF_IDLE: "true"
+  #     RESTART_CRON: "0 5 * * *"
+  #     RESTART_IF_IDLE: "true"
+  #     TZ: "Australia/Sydney"
+  #     BACKUPS: "true"
+  #     BACKUPS_CRON: "0 * * * *"
+  #     BACKUPS_MAX_AGE: 3
+  #     PUID: 975
+  #     PGID: 10017
+  #     VALHEIM_PLUS: "true"
+  #     VPCFG_ValheimPlus_serverBrowserAdvertisement: "false"
+  #     VPCFG_Beehive_enabled: "true"
+  #     VPCFG_Beehive_showDuration: "true"
+  #     VPCFG_Fermenter_enabled: "true"
+  #     VPCFG_Fermenter_showDuration: "true"
+  #     VPCFG_Smelter_enabled: "true"
+  #     VPCFG_Smelter_maximumOre: 20
+  #     VPCFG_Smelter_maximumCoal: 63
+  #     VPCFG_Furnace_enabled: "true"
+  #     VPCFG_Furnace_maximumOre: 20
+  #     VPCFG_Furnace_maximumCoal: 63
+  #     VPCFG_Hud_enabled: "true"
+  #     VPCFG_Hud_showRequiredItems: "true"
+  #     VPCFG_Kiln_enabled: "true"
+  #     VPCFG_Kiln_maximumWood: 40
+  #     VPCFG_Map_enabled: "true"
+  #     VPCFG_Map_preventPlayerFromTurningOffPublicPosition: "true"
+  #     VPCFG_Player_enabled: "true"
+  #     VPCFG_Player_autoRepair: "true"
+  #     VPCFG_Player_skipIntro: "true"
+  #     VPCFG_Server_enabled: "true"
+  #     VPCFG_Server_dataRate: 2048
+  #     VPCFG_Server_maxPlayers: 25
+  #     VPCFG_Server_serverSyncsConfig: "true"
+  #     VPCFG_Windmill_enabled: "true"
+  #     VPCFG_Windmill_maximumBarley: 100
+  #     VPCFG_SpinningWheel_enabled: "true"
+  #     VPCFG_SpinningWheel_maximumFlax: 100
+  #     VPCFG_GameClock_enabled: "true"
+  #     VPCFG_GameClock_useAMPM: "true"
+  #     VPCFG_GameClock_textFontSize: 20
+  #     VPCFG_GameClock_textTransparencyChannel: 200
+  #     VPCFG_Chat_enabled: "true"
+  #     VPCFG_Chat_forcedCase: "false"
+  #   restart: unless-stopped
+  #   stop_grace_period: 2m
+  #   networks:
+  #     games:
+  #       ipv4_address: 192.168.17.3
+
+  # terraria:
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: 2.0
+  #         memory: 8192M
+  #   dns:
+  #     - 192.168.6.4
+  #     - 192.168.6.2
+  #   image: beardedio/terraria:vanilla-latest
+  #   ports:
+  #     - "7777:7777"
+  #   volumes:
+  #     - "/mnt/zfs/games/terraria:/config"
+  #   environment:
+  #     world: "Byherson.wld"
+  #   restart: unless-stopped
+  #   logging:
+  #     driver: journald
+  #     options: {}
+  #   networks:
+  #     games:
+  #       ipv4_address: 192.168.17.4
+  #   tty: true
+  #   stdin_open: true
+
   minecraft:
     deploy:
       resources:
         limits:
-          cpus: 8.0
+          cpus: 4.0
           memory: 8192M
     dns:
       - 192.168.6.4
       - 192.168.6.2
-    image: itzg/minecraft-server
+    image: itzg/minecraft-server:java17-alpine
     ports:
       - "25565:25565"
     volumes:
-      - "/mnt/zfs/games/minecraft:/data"
+      - "/mnt/zfs/games/minecraft-vanilla-galah:/data"
     environment:
+      ALLOW_FLIGHT: "FALSE"
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: "TRUE"
+      DIFFICULTY: "easy"
+      ENFORCE_WHITELIST: "TRUE"
       EULA: "TRUE"
-      ENABLE_AUTOPAUSE: "TRUE"
-      OVERRIDE_SERVER_PROPERTIES: "TRUE"
-      MAX_TICK_TIME: "-1"
       MEMORY: "8G"
+      MODE: "survival"
+      MOTD: "It is §gM§fi§en§de§cc§br§aa§9f§3t§r my dudes"
+      OPS: "0c993c7b-8293-40f0-af15-31799691c298"
+      OVERRIDE_SERVER_PROPERTIES: "TRUE"
+      SERVER_NAME: "The Flock"
+      SNOOPER_ENABLED: "FALSE"
+      SPAWN_PROTECTION: "0"
+      WHITELIST: "e77f5cec-ea3d-4961-ba19-8e50bf8ed763,0c993c7b-8293-40f0-af15-31799691c298,9544478a-4731-4fe9-86c7-f8956a72fb60,43535f05-05bd-4f59-b133-7d4e84b6e8d7,75d02768-e4fc-4275-9718-a5d1c77bd538"
+      TZ: Australia/NSW
       UID: 989
       GID: 10017
-    restart: unless-stopped
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      games:
-        ipv4_address: 192.168.17.2
-
-  valheim:
-    deploy:
-      resources:
-        limits:
-          cpus: 8.0
-          memory: 8192M
-    dns:
-      - 192.168.6.4
-      - 192.168.6.2
-    image: ghcr.io/lloesche/valheim-server
-    cap_add:
-      - sys_nice
-    volumes:
-      - /mnt/zfs/games/valheim-server/config:/config
-      - /mnt/zfs/games/valheim-server/data:/opt/valheim
-    ports:
-      - "2456-2457:2456-2457/udp"
-      - "9001:9001/tcp"
-    environment:
-      SERVER_NAME: ""
-      SERVER_PASS: ""
-      SERVER_PUBLIC: "false"
-      UPDATE_CRON: "*/15 * * * *"
-      UPDATE_IF_IDLE: "true"
-      RESTART_CRON: "0 5 * * *"
-      RESTART_IF_IDLE: "true"
-      TZ: "Australia/NSW"
-      BACKUPS: "true"
-      BACKUPS_CRON: "0 * * * *"
-      BACKUPS_MAX_AGE: 3
-      PUID: 975
-      PGID: 10017
-      VALHEIM_PLUS: "true"
-      VPCFG_ValheimPlus_serverBrowserAdvertisement: "false"
-      VPCFG_Beehive_enabled: "true"
-      VPCFG_Beehive_showDuration: "true"
-      VPCFG_Fermenter_enabled: "true"
-      VPCFG_Fermenter_showDuration: "true"
-      VPCFG_Smelter_enabled: "true"
-      VPCFG_Smelter_maximumOre: 20
-      VPCFG_Smelter_maximumCoal: 63
-      VPCFG_Furnace_enabled: "true"
-      VPCFG_Furnace_maximumOre: 20
-      VPCFG_Furnace_maximumCoal: 63
-      VPCFG_Hud_enabled: "true"
-      VPCFG_Hud_showRequiredItems: "true"
-      VPCFG_Kiln_enabled: "true"
-      VPCFG_Kiln_maximumWood: 40
-      VPCFG_Map_enabled: "true"
-      VPCFG_Map_preventPlayerFromTurningOffPublicPosition: "true"
-      VPCFG_Player_enabled: "true"
-      VPCFG_Player_autoRepair: "true"
-      VPCFG_Player_skipIntro: "true"
-      VPCFG_Server_enabled: "true"
-      VPCFG_Server_dataRate: 2048
-      VPCFG_Server_maxPlayers: 25
-      VPCFG_Server_serverSyncsConfig: "true"
-      VPCFG_Windmill_enabled: "true"
-      VPCFG_Windmill_maximumBarley: 100
-      VPCFG_SpinningWheel_enabled: "true"
-      VPCFG_SpinningWheel_maximumFlax: 100
-      VPCFG_GameClock_enabled: "true"
-      VPCFG_GameClock_useAMPM: "true"
-      VPCFG_GameClock_textFontSize: 20
-      VPCFG_GameClock_textTransparencyChannel: 200
-      VPCFG_Chat_enabled: "true"
-      VPCFG_Chat_forcedCase: "false"
-    restart: unless-stopped
-    stop_grace_period: 2m
-    networks:
-      games:
-        ipv4_address: 192.168.17.3
-
-  terraria:
-    deploy:
-      resources:
-        limits:
-          cpus: 2.0
-          memory: 8192M
-    dns:
-      - 192.168.6.4
-      - 192.168.6.2
-    image: beardedio/terraria:vanilla-latest
-    ports:
-      - "7777:7777"
-    volumes:
-      - "/mnt/zfs/games/terraria:/config"
-    environment:
-      world: "Byherson.wld"
-    restart: unless-stopped
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      games:
-        ipv4_address: 192.168.17.4
     tty: true
     stdin_open: true
-
-  minecraft-all-the-mods-7:
-    deploy:
-      resources:
-        limits:
-          cpus: 4.0
-          memory: 12288M
-    dns:
-      - 192.168.6.4
-      - 192.168.6.2
-    container_name: minecraft-all-the-mods-7
-    extra_hosts:
-      localhost: 127.0.0.1
-    hostname: minecraft-all-the-mods-7
-    image: itzg/minecraft-server:latest
-    ports:
-      - "25565:25565/tcp"
-      - "25565:25565/udp"
-    volumes:
-      - "/mnt/zfs/games/minecraft-all-the-mods-7:/data"
-    environment:
-      EULA: "TRUE"
-      OVERRIDE_SERVER_PROPERTIES: "TRUE"
-      TYPE: CURSEFORGE
-      MEMORY: "12G"
-      CF_SERVER_MOD: SIMPLE-SERVER-FILES-0.2.41.zip
-      UID: 989
-      GID: 10017
-      MOTD: "Fuck Bees"
-      MAX_PLAYERS: 10
-      SNOOPER_ENABLED: "FALSE"
-      SPAWN_PROTECTION: 0
-      SERVER_NAME: "Seeb Kcuf"
-      TZ: Australia/NSW
-
     restart: unless-stopped
     logging:
       driver: journald
@@ -180,5 +182,43 @@ services:
     networks:
       games:
         ipv4_address: 192.168.17.5
-
-version: "3"
+  # minecraft-all-the-mods-7:
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: 4.0
+  #         memory: 12288M
+  #   dns:
+  #     - 192.168.6.4
+  #     - 192.168.6.2
+  #   container_name: minecraft-all-the-mods-7
+  #   extra_hosts:
+  #     localhost: 127.0.0.1
+  #   hostname: minecraft-all-the-mods-7
+  #   image: itzg/minecraft-server:latest
+  #   ports:
+  #     - "25565:25565/tcp"
+  #     - "25565:25565/udp"
+  #   volumes:
+  #     - "/mnt/zfs/games/minecraft-all-the-mods-7:/data"
+  #   environment:
+  #     EULA: "TRUE"
+  #     OVERRIDE_SERVER_PROPERTIES: "TRUE"
+  #     TYPE: CURSEFORGE
+  #     MEMORY: "12G"
+  #     CF_SERVER_MOD: SIMPLE-SERVER-FILES-0.2.41.zip
+  #     UID: 989
+  #     GID: 10017
+  #     MOTD: "Fuck Bees"
+  #     MAX_PLAYERS: 10
+  #     SNOOPER_ENABLED: "FALSE"
+  #     SPAWN_PROTECTION: 0
+  #     SERVER_NAME: "Seeb Kcuf"
+  #     TZ: "Australia/Sydney"
+  #   restart: unless-stopped
+  #   logging:
+  #     driver: journald
+  #     options: {}
+  #   networks:
+  #     games:
+  #       ipv4_address: 192.168.17.5
