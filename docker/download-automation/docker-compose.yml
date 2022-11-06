@@ -10,60 +10,6 @@ networks:
       driver: default
 
 services:
-  amd:
-    container_name: amd
-    hostname: amd
-    deploy:
-      resources:
-        limits:
-          cpus: 2.0
-          memory: 1024M
-    dns:
-      - 192.168.6.4
-      - 192.168.6.2
-    entrypoint:
-      - /init
-    environment:
-      ARL_TOKEN: ''
-      AUTOSTART: "true"
-      BITRATE: '320'
-      Concurrency: '1'
-      DOWNLOADMODE: wanted
-      EMBEDDED_COVER_QUALITY: '80'
-      FALLBACKSEARCH: "True"
-      FORCECONVERT: "false"
-      FORMAT: MP3
-      FilePermissions: '666'
-      FolderPermissions: '766'
-      HOME: /root
-      LIST: both
-      LidarrAPIkey: ''
-      LidarrUrl: https://lidarr.rovacsek.com
-      MBRAINZMIRROR: https://musicbrainz.org
-      MBRATELIMIT: '1'
-      MatchDistance: '10'
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      POSTPROCESSTHREADS: '8'
-      PGID: 10005
-      PUID: 990
-      SCRIPTINTERVAL: 6h
-      SearchType: both
-      TITLESHORT: AMD
-      replaygain: "true"
-      requirequality: "false"
-    image: randomninjaatk/amd:latest
-    ipc: private
-    logging:
-      driver: journald
-      options: {}
-    networks:
-      download:
-        ipv4_address: 192.168.4.142
-    restart: unless-stopped
-    volumes:
-      - /mnt/zfs/containers/amd:/config:rw
-      - /mnt/zfs/downloads:/downloads-amd:rw
-    working_dir: /config
 
   deluge:
     container_name: deluge
@@ -71,7 +17,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: "1"
           memory: 2048M
     dns:
       - 192.168.6.4
@@ -118,7 +64,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: "1"
           memory: 2048M
     entrypoint:
       - /init
@@ -146,7 +92,7 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/zfs/containers/lidarr:/config:rw
-      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:ro
+      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/ssl/rovacsek.com:ro
       - /mnt/zfs/downloads:/downloads:rw
       - /mnt/zfs/downloads:/downloads-amd:rw
       - /mnt/zfs/music:/music:rw
@@ -157,7 +103,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: "1"
           memory: 2048M
     dns:
       - 192.168.6.4
@@ -195,7 +141,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: "1"
           memory: 2048M
     dns:
       - 192.168.6.4
@@ -243,7 +189,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: "1"
           memory: 2048M
     dns:
       - 192.168.6.4
@@ -264,7 +210,7 @@ services:
       XDG_CONFIG_HOME: /config/xdg
     extra_hosts:
       - deluge:192.168.4.130
-    image: ghcr.io/linuxserver/sonarr:latest
+    image: ghcr.io/linuxserver/sonarr:develop
     ipc: private
     logging:
       driver: journald
@@ -323,7 +269,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 1.0
+          cpus: "1"
           memory: 2048M
     hostname: tdarr-controller
     dns:
@@ -360,7 +306,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 2.0
+          cpus: "2"
           memory: 4096M
     dns:
       - 192.168.6.4
