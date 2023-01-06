@@ -106,14 +106,14 @@ services:
       VPCFG_Smelter_maximumOre: 100
       VPCFG_Smelter_maximumCoal: 200
       VPCFG_Smelter_coalUsedPerProduct: 200
-      VPCFG_Smelter_autoDeposit: 200
-      VPCFG_Smelter_autoFuel: 200
+      VPCFG_Smelter_autoDeposit: "true"
+      VPCFG_Smelter_autoFuel: "true"
 
       VPCFG_Furnace_enabled: "true"
       VPCFG_Furnace_maximumOre: 100
       VPCFG_Furnace_maximumCoal: 200
-      VPCFG_Furnace_autoDeposit: 200
-      VPCFG_Furnace_autoFuel: 200
+      VPCFG_Furnace_autoDeposit: "true"
+      VPCFG_Furnace_autoFuel: "true"
 
       VPCFG_Hud_enabled: "true"
       VPCFG_Hud_showRequiredItems: "true"
@@ -146,8 +146,8 @@ services:
 
       VPCFG_Windmill_enabled: "true"
       VPCFG_Windmill_maximumBarley: 200
-      VPCFG_Windmill_autoDeposit: 200
-      VPCFG_Windmill_autoFuel: 200
+      VPCFG_Windmill_autoDeposit: "true"
+      VPCFG_Windmill_autoFuel: "true"
 
       VPCFG_Inventory_enabled: "true"
       VPCFG_Inventory_playerInventoryRows: 5
@@ -163,8 +163,8 @@ services:
 
       VPCFG_SpinningWheel_enabled: "true"
       VPCFG_SpinningWheel_maximumFlax: 200
-      VPCFG_SpinningWheel_autoDeposit: 200
-      VPCFG_SpinningWheel_autoFuel: 200
+      VPCFG_SpinningWheel_autoDeposit: "true"
+      VPCFG_SpinningWheel_autoFuel: "true"
 
       VPCFG_GameClock_enabled: "true"
       VPCFG_GameClock_useAMPM: "true"
