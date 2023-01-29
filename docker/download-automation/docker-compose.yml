@@ -92,7 +92,7 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/zfs/containers/lidarr:/config:rw
-      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/ssl/rovacsek.com:ro
+      - /mnt/zfs/containers/swag/etc/letsencrypt/live/rovacsek.com:/config/rovacsek.com:ro
       - /mnt/zfs/downloads:/downloads:rw
       - /mnt/zfs/downloads:/downloads-amd:rw
       - /mnt/zfs/music:/music:rw
@@ -119,7 +119,7 @@ services:
       PUID: '973'
       TERM: xterm
       UMASK: '022'
-    image: ghcr.io/linuxserver/ombi:latest
+    image: ghcr.io/linuxserver/ombi:development
     ipc: private
     logging:
       driver: journald
@@ -229,7 +229,7 @@ services:
       - /mnt/zfs/tv:/tv:rw
 
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:develop
+    image: ghcr.io/linuxserver/prowlarr:nightly
     container_name: prowlarr
     hostname: prowlarr
     dns:
@@ -299,7 +299,6 @@ services:
       - /mnt/zfs/tv:/tv:rw
       - /mnt/zfs/music:/music:rw
       - /transcode:/temp:rw
-      - /mnt/zfs/test:/test:rw
 
   tdarr-node-01:
     container_name: tdarr-node-01

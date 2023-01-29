@@ -14,20 +14,20 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 2.0
+          cpus: "2.0"
           memory: 4096M
     dns:
-      - 192.168.6.4
-      - 192.168.6.2
+      - 1.1.1.1
+      - 9.9.9.9
     environment:
-      CACHE_DISK_SIZE: 2000000m
-      CACHE_MAX_AGE: 3650d
-      CACHE_MEM_SIZE: 500m
+      CACHE_DISK_SIZE: "2000000m"
+      CACHE_MAX_AGE: "3650d"
+      CACHE_MEM_SIZE: "2048m"
       CACHE_ROOT: /data/cache
-      DNS_BIND_IP: 192.168.16.2
-      LANCACHE_IP: 192.168.16.2
+      DNS_BIND_IP: "192.168.16.2"
+      LANCACHE_IP: "192.168.16.2"
       TZ: Australia/NSW
-      UPSTREAM_DNS: 1.1.1.1
+      UPSTREAM_DNS: "1.1.1.1 9.9.9.9"
       USE_GENERIC_CACHE: "true"
     hostname: monolithic
     image: lancachenet/monolithic:latest
