@@ -8,7 +8,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: 4.0
+          cpus: "4"
           memory: 4096M
     dns:
       - 192.168.6.4
@@ -26,7 +26,7 @@ services:
       PUID: '976'
       S6_BEHAVIOUR_IF_STAGE2_FAILS: '2'
       STAGING: "false"
-      SUBDOMAINS: pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,duplicati,pihole-1,pihole-2,portainer,homeassistant,tdarr,prowlarr,binarycache
+      SUBDOMAINS: pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,duplicati,pihole,portainer,homeassistant,tdarr,prowlarr,binarycache,headscale
       TERM: xterm
       UMASK: '002'
       URL: rovacsek.com

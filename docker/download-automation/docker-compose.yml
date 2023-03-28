@@ -74,7 +74,7 @@ services:
       TZ: Australia/NSW
       UMASK: '022'
 
-    image: ghcr.io/linuxserver/lidarr:nightly
+    image: ghcr.io/linuxserver/lidarr:develop
     ipc: private
     logging:
       driver: journald
@@ -229,7 +229,7 @@ services:
       - /mnt/zfs/tv:/tv:rw
 
   prowlarr:
-    image: ghcr.io/linuxserver/prowlarr:nightly
+    image: ghcr.io/linuxserver/prowlarr
     container_name: prowlarr
     hostname: prowlarr
     dns:

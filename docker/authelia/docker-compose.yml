@@ -22,7 +22,8 @@ services:
           cpus: "2.0"
           memory: 4096M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     environment:
       PATH: /app:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
       PGID: '10006'
@@ -54,7 +55,8 @@ services:
           cpus: "1.0"
           memory: 2048M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     entrypoint:
       - docker-entrypoint.sh
     environment:
@@ -95,7 +97,8 @@ services:
           cpus: "1.0"
           memory: 1024M
     dns:
-      - 192.168.6.6
+      - 192.168.6.4
+      - 192.168.6.2
     entrypoint:
       - docker-entrypoint.sh
     environment:

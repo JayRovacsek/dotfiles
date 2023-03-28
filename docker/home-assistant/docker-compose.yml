@@ -27,7 +27,6 @@ services:
       S6_BEHAVIOUR_IF_STAGE2_FAILS: '2'
       S6_CMD_WAIT_FOR_SERVICES: '1'
       S6_SERVICES_GRACETIME: '220000'
-      WHEELS_LINKS: https://wheels.home-assistant.io/alpine-3.13/amd64/
     hostname: homeassistant
     image: homeassistant/home-assistant:latest
     ipc: private
