@@ -12,8 +12,8 @@ services:
           cpus: "4"
           memory: 12288M
     dns:
-      - 192.168.6.2
       - 192.168.6.4
+      - 192.168.1.220
     entrypoint:
       - /init
     environment:

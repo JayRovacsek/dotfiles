@@ -1,2 +1,5 @@
-# My Dotfiles
-Well, more like my shift to utilising nix nowadays, there's a lot of work to do!
+# Dotfiles
+
+We've been flake'd!
+
+Head over [here](https://github.com/JayRovacsek/nix-config) for the current config

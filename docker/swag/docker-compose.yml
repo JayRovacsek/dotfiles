@@ -12,7 +12,7 @@ services:
           memory: 4096M
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     entrypoint:
       - /init
     environment:
@@ -26,7 +26,7 @@ services:
       PUID: '976'
       S6_BEHAVIOUR_IF_STAGE2_FAILS: '2'
       STAGING: "false"
-      SUBDOMAINS: pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,duplicati,pihole,portainer,homeassistant,tdarr,prowlarr,binarycache,headscale
+      SUBDOMAINS: pfsense,nextcloud,authelia,jellyfin,ombi,radarr,sonarr,lidarr,duplicati,portainer,homeassistant,tdarr,prowlarr,binarycache,headscale
       TERM: xterm
       UMASK: '002'
       URL: rovacsek.com

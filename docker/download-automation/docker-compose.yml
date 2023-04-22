@@ -21,7 +21,7 @@ services:
           memory: 2048M
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     entrypoint:
       - /init
     environment:
@@ -107,7 +107,7 @@ services:
           memory: 2048M
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     entrypoint:
       - /init
     environment:
@@ -145,7 +145,7 @@ services:
           memory: 2048M
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     entrypoint:
       - /init
     environment:
@@ -193,7 +193,7 @@ services:
           memory: 2048M
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     entrypoint:
       - /init
     environment:
@@ -234,7 +234,7 @@ services:
     hostname: prowlarr
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     networks:
       download:
         ipv4_address: 192.168.4.137
@@ -253,7 +253,7 @@ services:
     container_name: flaresolverr
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     networks:
       download:
         ipv4_address: 192.168.4.138
@@ -274,7 +274,7 @@ services:
     hostname: tdarr-controller
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     image: haveagitgat/tdarr:latest
     restart: unless-stopped
     networks:
@@ -309,7 +309,7 @@ services:
           memory: 4096M
     dns:
       - 192.168.6.4
-      - 192.168.6.2
+      - 192.168.1.220
     hostname: tdarr-node-01
     image: haveagitgat/tdarr_node:latest
     ports:
